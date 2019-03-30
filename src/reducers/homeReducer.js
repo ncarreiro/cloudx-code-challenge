@@ -15,10 +15,10 @@ export default function (state = initialState, action) {
       };
     }
     case SET_ALBUMS: {
-      const {albums} = action.data;
+      const {results} = action.data;
       return {
         ...state,
-        albums
+        albums: results
       };
     }
     default:

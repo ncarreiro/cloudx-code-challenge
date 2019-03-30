@@ -27,16 +27,33 @@ const ArtistItem = props => <li>
   {props.artistName} - <a href={props.artistLinkUrl}>Go to Artist Page</a>
 </li>;
 
-class Home extends React.Component {
-  // state = {
-  //   open: false,
-  // };
+const AlbumItem = props => <li>
+  {props.collectionName} - <a href={props.collectionViewUrl}>Go to Album Page</a>
+</li>;
 
-  // handleClose = () => {
-  //   this.setState({
-  //     open: false,
-  //   });
-  // };
+class Home extends React.Component {
+  state = {
+    showArtists: false,
+    showAlbums: false
+  };
+
+  findArtists = (name) => {
+    this.setState({
+      showArtists: true,
+      showAlbums: false
+    });
+
+    this.props.getArtists('jackson')
+  };
+
+  findAlbums = (name) => {
+    this.setState({
+      showArtists: false,
+      showAlbums: true,
+    });
+
+    this.props.getAlbums('jackson')
+  };
 
   // handleClick = () => {
   //   this.setState({
@@ -50,7 +67,11 @@ class Home extends React.Component {
       artists,
       albums
     } = this.props;
-    // const { open } = this.state;
+
+    const {
+      showArtists,
+      showAlbums
+    } = this.state;
 
     return (
       <div className={classes.root}>
@@ -71,14 +92,17 @@ class Home extends React.Component {
         <Typography variant="h6" gutterBottom>
           iTunes Artist and Album search by Nahuel Carreiro
         </Typography>
-        <Button variant="contained" color="secondary" onClick={this.props.getArtists.bind(this)}>
+        <Button variant="contained" color="secondary" onClick={this.findArtists.bind(this)}>
           GET ARTISTS
         </Button>
+        <Button variant="contained" color="secondary" onClick={this.findAlbums.bind(this)}>
+          GET ALBUMS
+        </Button>
         <ul>
-          {artists.map(artist => <ArtistItem key={artist.artistId} {...artist}/>)}
+          {showArtists && artists.map(artist => <ArtistItem key={artist.artistId} {...artist}/>)}
         </ul>
         <ul>
-          {albums.map(artist => <ArtistItem key={artist.artistId} {...artist}/>)}
+          {showAlbums && albums.map(album => <AlbumItem key={album.collectionId} {...album}/>)}
         </ul>
       </div>
     );
