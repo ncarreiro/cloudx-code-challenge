@@ -3,3 +3,6 @@ export const SET_ARTISTS = 'SET_ARTISTS';
 
 export const GET_ALBUMS = 'GET_ALBUMS';
 export const SET_ALBUMS = 'SET_ALBUMS';
+
+export const GET_ALBUM_BY_ID = 'GET_ALBUM_BY_ID';
+export const SET_ALBUM_DATA = 'SET_ALBUM_DATA';

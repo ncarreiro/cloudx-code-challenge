@@ -5,6 +5,8 @@ import {createBrowserHistory} from 'history';
 
 import {
   Home,
+  Artist,
+  Album,
   NotFound
 } from './sections';
 
@@ -14,6 +16,8 @@ class AppRouter extends Component {
       <Router history={createBrowserHistory()}>
         <Switch>
           <Route exact path="/" component={Home}/>
+          <Route exact path="/artist/:artistId" component={Artist}/>
+          <Route exact path="/album/:albumId" component={Album}/>
           <Route component={NotFound}/>
         </Switch>
       </Router>

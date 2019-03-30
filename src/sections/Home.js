@@ -13,7 +13,7 @@ import { withStyles } from '@material-ui/core/styles';
 
 import {
   getArtists,
-  getAlbums
+  getAlbums,
 } from '../actions/itunesActions';
 
 const styles = theme => ({
@@ -54,12 +54,6 @@ class Home extends React.Component {
 
     this.props.getAlbums('jackson')
   };
-
-  // handleClick = () => {
-  //   this.setState({
-  //     open: true,
-  //   });
-  // };
 
   render() {
     const {
@@ -104,6 +98,7 @@ class Home extends React.Component {
         <ul>
           {showAlbums && albums.map(album => <AlbumItem key={album.collectionId} {...album}/>)}
         </ul>
+
       </div>
     );
   }
@@ -128,7 +123,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     getArtists: bindActionCreators(getArtists, dispatch),
-    getAlbums: bindActionCreators(getAlbums, dispatch)
+    getAlbums: bindActionCreators(getAlbums, dispatch),
   }
 }
 
