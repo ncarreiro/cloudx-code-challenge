@@ -1,5 +1,5 @@
-import home from "./home";
+import itunesActions from "./itunesActions";
 
 export {
-  home,
-}
+  itunesActions,
+};

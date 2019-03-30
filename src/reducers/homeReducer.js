@@ -8,14 +8,14 @@ const initialState = {
 export default function (state = initialState, action) {
   switch (action.type) {
     case SET_ARTISTS: {
-      const {artists} = action.payload;
+      const {results} = action.data;
       return {
         ...state,
-        artists
+        artists: results
       };
     }
     case SET_ALBUMS: {
-      const {albums} = action.payload;
+      const {albums} = action.data;
       return {
         ...state,
         albums
