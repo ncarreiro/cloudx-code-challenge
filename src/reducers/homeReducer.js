@@ -1,4 +1,4 @@
-import {SET_ARTISTS, SET_ALBUMS} from "../constants/actionTypes";
+import {CLEAN_HOME_DATA, SET_ARTISTS, SET_ALBUMS} from "../constants/actionTypes";
 
 const initialState = {
   artists: [],
@@ -7,18 +7,19 @@ const initialState = {
 
 export default function (state = initialState, action) {
   switch (action.type) {
+    case CLEAN_HOME_DATA: {
+      return initialState;
+    }
     case SET_ARTISTS: {
-      const {results} = action.data;
       return {
         ...state,
-        artists: results
+        artists: action.data.results
       };
     }
     case SET_ALBUMS: {
-      const {results} = action.data;
       return {
         ...state,
-        albums: results
+        albums: action.data.results
       };
     }
     default:

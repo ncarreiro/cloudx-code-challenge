@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
 // import Dialog from '@material-ui/core/Dialog';
 // import DialogTitle from '@material-ui/core/DialogTitle';
 // import DialogContent from '@material-ui/core/DialogContent';
@@ -33,26 +34,28 @@ const AlbumItem = props => <li>
 
 class Home extends React.Component {
   state = {
-    showArtists: false,
-    showAlbums: false
+    searchFilter: 'artists',
+    searchValue: ''
   };
 
-  findArtists = (name) => {
+  handleFilter = filterValue => {
     this.setState({
-      showArtists: true,
-      showAlbums: false
+      searchFilter: filterValue
     });
-
-    this.props.getArtists('jackson')
   };
 
-  findAlbums = (name) => {
-    this.setState({
-      showArtists: false,
-      showAlbums: true,
-    });
-
-    this.props.getAlbums('jackson')
+  handleSearch = () => {
+    switch (this.state.searchFilter) {
+      case 'artists': {
+        return this.props.getArtists(this.state.searchValue)
+      }
+      case 'albums': {
+        return this.props.getAlbums(this.state.searchValue)
+      }
+      default: {
+        return false
+      }
+    }
   };
 
   render() {
@@ -63,8 +66,7 @@ class Home extends React.Component {
     } = this.props;
 
     const {
-      showArtists,
-      showAlbums
+      searchFilter
     } = this.state;
 
     return (
@@ -86,17 +88,30 @@ class Home extends React.Component {
         <Typography variant="h6" gutterBottom>
           iTunes Artist and Album search by Nahuel Carreiro
         </Typography>
-        <Button variant="contained" color="secondary" onClick={this.findArtists.bind(this)}>
+        <form onSubmit={e => { e.preventDefault()}}>
+          <TextField
+            hintText="Search..."
+            value={this.state.searchValue}
+            onChange={event => this.setState({searchValue: event.target.value})}
+          />
+          <Button
+            type="submit"
+            color="secondary"
+            onClick={() => this.handleSearch()}>
+            BUSCAR
+          </Button>
+        </form>
+        <Button variant="contained" color={searchFilter === 'artists' ? 'secondary' : 'primary'} onClick={() => this.handleFilter('artists')}>
           GET ARTISTS
         </Button>
-        <Button variant="contained" color="secondary" onClick={this.findAlbums.bind(this)}>
+        <Button variant="contained" color={searchFilter === 'albums' ? 'secondary' : 'primary'} onClick={() => this.handleFilter('albums')}>
           GET ALBUMS
         </Button>
         <ul>
-          {showArtists && artists.map(artist => <ArtistItem key={artist.artistId} {...artist}/>)}
+          {artists.length > 0 && artists.map(artist => <ArtistItem key={artist.artistId} {...artist}/>)}
         </ul>
         <ul>
-          {showAlbums && albums.map(album => <AlbumItem key={album.collectionId} {...album}/>)}
+          {albums.length > 0 && albums.map(album => <AlbumItem key={album.collectionId} {...album}/>)}
         </ul>
 
       </div>

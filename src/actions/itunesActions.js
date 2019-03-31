@@ -2,6 +2,7 @@ import axios from 'axios';
 import config from '../config';
 
 import {
+  CLEAN_HOME_DATA,
   GET_ARTISTS,
   SET_ARTISTS,
   GET_ALBUMS,
@@ -12,9 +13,10 @@ import {
 
 export function getArtists(artistName) {
   return async (dispatch) => {
+    dispatch({type: CLEAN_HOME_DATA});
     dispatch({type: GET_ARTISTS});
     // dispatch({ type: SHOW_LOADING });
-    const {data} = await axios.get(`${config['SERVICE_URL']}/search?term=${artistName}&entity=allArtist&attribute=allArtistTerm`);
+    const {data} = await axios.get(`${config['SERVICE_URL']}/search?term=${artistName}&entity=allArtist`);
     dispatch({type: SET_ARTISTS, data});
     // dispatch({ type: HIDE_LOADING });
   }
@@ -22,9 +24,10 @@ export function getArtists(artistName) {
 
 export function getAlbums(albumName) {
   return async (dispatch) => {
+    dispatch({type: CLEAN_HOME_DATA});
     dispatch({type: GET_ALBUMS});
     // dispatch({ type: SHOW_LOADING });
-    const {data} = await axios.get(`${config['SERVICE_URL']}/search?term=${albumName}&entity=album&attribute=albumTerm`);
+    const {data} = await axios.get(`${config['SERVICE_URL']}/search?term=${albumName}&entity=album`);
     dispatch({type: SET_ALBUMS, data});
     // dispatch({ type: HIDE_LOADING });
   }

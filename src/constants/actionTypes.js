@@ -1,3 +1,5 @@
+export const CLEAN_HOME_DATA = 'CLEAN_HOME_DATA';
+
 export const GET_ARTISTS = 'GET_ARTISTS';
 export const SET_ARTISTS = 'SET_ARTISTS';
 

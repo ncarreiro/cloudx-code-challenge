@@ -5,7 +5,7 @@ import Router from './router';
 
 import {MuiThemeProvider, createMuiTheme} from '@material-ui/core/styles';
 import purple from '@material-ui/core/colors/purple';
-import green from '@material-ui/core/colors/green';
+import blue from '@material-ui/core/colors/blue';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
 const theme = createMuiTheme({
@@ -16,9 +16,9 @@ const theme = createMuiTheme({
       dark: purple[700],
     },
     secondary: {
-      light: green[300],
-      main: green[500],
-      dark: green[700],
+      light: blue[300],
+      main: blue[500],
+      dark: blue[700],
     },
   },
   typography: {
