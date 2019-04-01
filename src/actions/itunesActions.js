@@ -12,33 +12,30 @@ import {
 } from '../constants/actionTypes';
 
 export function getArtists(artistName) {
-  return async (dispatch) => {
+  return async dispatch => {
     dispatch({type: CLEAN_HOME_DATA});
     dispatch({type: GET_ARTISTS});
-    // dispatch({ type: SHOW_LOADING });
     const {data} = await axios.get(`${config['SERVICE_URL']}/search?term=${artistName}&entity=allArtist`);
     dispatch({type: SET_ARTISTS, data});
-    // dispatch({ type: HIDE_LOADING });
+    return data.results;
   }
 }
 
 export function getAlbums(albumName) {
-  return async (dispatch) => {
+  return async dispatch => {
     dispatch({type: CLEAN_HOME_DATA});
     dispatch({type: GET_ALBUMS});
-    // dispatch({ type: SHOW_LOADING });
     const {data} = await axios.get(`${config['SERVICE_URL']}/search?term=${albumName}&entity=album`);
     dispatch({type: SET_ALBUMS, data});
-    // dispatch({ type: HIDE_LOADING });
+    return data.results;
   }
 }
 
 export function getAlbumById(albumId) {
-  return async (dispatch) => {
+  return async dispatch => {
     dispatch({type: GET_ALBUM_BY_ID});
-    // dispatch({ type: SHOW_LOADING });
     const {data} = await axios.get(`${config['SERVICE_URL']}/lookup?id=${albumId}&entity=song`);
     dispatch({type: SET_ALBUM_DATA, data});
-    // dispatch({ type: HIDE_LOADING });
+    return data;
   }
 }

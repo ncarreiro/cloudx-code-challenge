@@ -11,15 +11,17 @@ export default function (state = initialState, action) {
       return initialState;
     }
     case SET_ARTISTS: {
+      const artists = action.data.results;
       return {
         ...state,
-        artists: action.data.results
+        artists
       };
     }
     case SET_ALBUMS: {
+      const albums = action.data.results;
       return {
         ...state,
-        albums: action.data.results
+        albums
       };
     }
     default:

@@ -1,16 +1,22 @@
 import React from 'react';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
+import {Link} from 'react-router-dom';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-// import Dialog from '@material-ui/core/Dialog';
-// import DialogTitle from '@material-ui/core/DialogTitle';
-// import DialogContent from '@material-ui/core/DialogContent';
-// import DialogContentText from '@material-ui/core/DialogContentText';
-// import DialogActions from '@material-ui/core/DialogActions';
+import Dialog from '@material-ui/core/Dialog';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogActions from '@material-ui/core/DialogActions';
 import Typography from '@material-ui/core/Typography';
-import { withStyles } from '@material-ui/core/styles';
+import {withStyles} from '@material-ui/core/styles';
+
+import {
+  ArtistItem,
+  AlbumItem
+} from '../components';
 
 import {
   getArtists,
@@ -24,18 +30,13 @@ const styles = theme => ({
   },
 });
 
-const ArtistItem = props => <li>
-  {props.artistName} - <a href={props.artistLinkUrl}>Go to Artist Page</a>
-</li>;
-
-const AlbumItem = props => <li>
-  {props.collectionName} - <a href={props.collectionViewUrl}>Go to Album Page</a>
-</li>;
-
 class Home extends React.Component {
   state = {
+    showLoading: false,
+    showError: false,
     searchFilter: 'artists',
-    searchValue: ''
+    searchValue: '',
+    firstSearch: false
   };
 
   handleFilter = filterValue => {
@@ -45,17 +46,35 @@ class Home extends React.Component {
   };
 
   handleSearch = () => {
+    const {searchValue} = this.state;
+    this.setState({
+      showLoading: true,
+    });
     switch (this.state.searchFilter) {
       case 'artists': {
-        return this.props.getArtists(this.state.searchValue)
+        return this.props.getArtists(searchValue)
+          .then(response => this.setState({
+            showLoading: false,
+            showError: !response.length
+          }))
       }
       case 'albums': {
-        return this.props.getAlbums(this.state.searchValue)
+        return this.props.getAlbums(searchValue)
+          .then(response => this.setState({
+            showLoading: false,
+            showError: !response.length
+          }))
       }
       default: {
         return false
       }
     }
+  };
+
+  handleCloseError = () => {
+    this.setState({
+      showError: false
+    })
   };
 
   render() {
@@ -66,32 +85,41 @@ class Home extends React.Component {
     } = this.props;
 
     const {
-      searchFilter
+      showLoading,
+      showError,
+      searchFilter,
+      searchValue
     } = this.state;
 
     return (
       <div className={classes.root}>
-        {/*<Dialog open={open} onClose={this.handleClose}>
-          <DialogTitle>Super Secret Password</DialogTitle>
+        <Dialog open={showError} onClose={() => this.handleCloseError()}>
+          <DialogTitle>Error</DialogTitle>
           <DialogContent>
-            <DialogContentText>1-2-3-4-5</DialogContentText>
+            <DialogContentText>No results found!</DialogContentText>
           </DialogContent>
           <DialogActions>
-            <Button color="primary" onClick={this.handleClose}>
+            <Button color="primary" onClick={() => this.handleCloseError()}>
               OK
             </Button>
           </DialogActions>
-        </Dialog>*/}
+        </Dialog>
         <Typography variant="h2" gutterBottom>
           CloudX Code Challenge
         </Typography>
         <Typography variant="h6" gutterBottom>
           iTunes Artist and Album search by Nahuel Carreiro
         </Typography>
-        <form onSubmit={e => { e.preventDefault()}}>
+        <br/>
+        <form
+          onSubmit={e => {
+            e.preventDefault()
+          }}
+          style={{display: 'flex', justifyContent: 'center', alignItems: 'bottom'}}
+        >
           <TextField
-            hintText="Search..."
-            value={this.state.searchValue}
+            placeholder="Search..."
+            value={searchValue}
             onChange={event => this.setState({searchValue: event.target.value})}
           />
           <Button
@@ -101,19 +129,29 @@ class Home extends React.Component {
             BUSCAR
           </Button>
         </form>
-        <Button variant="contained" color={searchFilter === 'artists' ? 'secondary' : 'primary'} onClick={() => this.handleFilter('artists')}>
+        <br/>
+        <Button variant="contained" color={searchFilter === 'artists' ? 'secondary' : 'primary'}
+                onClick={() => this.handleFilter('artists')}>
           GET ARTISTS
         </Button>
-        <Button variant="contained" color={searchFilter === 'albums' ? 'secondary' : 'primary'} onClick={() => this.handleFilter('albums')}>
+        <Button variant="contained" color={searchFilter === 'albums' ? 'secondary' : 'primary'}
+                onClick={() => this.handleFilter('albums')}>
           GET ALBUMS
         </Button>
-        <ul>
-          {artists.length > 0 && artists.map(artist => <ArtistItem key={artist.artistId} {...artist}/>)}
-        </ul>
-        <ul>
-          {albums.length > 0 && albums.map(album => <AlbumItem key={album.collectionId} {...album}/>)}
-        </ul>
-
+        <br/>
+        {showLoading ? <Typography variant="h4" gutterBottom>
+          Searching...
+        </Typography> : null}
+        {searchValue && <div>
+          {searchFilter === 'artists' ? <ul>
+            {artists.length > 0 ? artists.map(artist => <Link to={`/artist/${artist.artistName}`}>
+              <ArtistItem key={artist.artistId} {...artist}/>
+            </Link>) : null}
+          </ul> : null}
+          {searchFilter === 'albums' ? <ul>
+            {albums.length > 0 ? albums.map(album => <AlbumItem key={album.collectionId} {...album}/>) : null}
+          </ul> : null}
+        </div>}
       </div>
     );
   }
