@@ -1,7 +1,13 @@
-import AlbumItem from './AlbumItem';
+import AlbumList from './AlbumList';
 import ArtistItem from './ArtistItem';
+import Header from './Header';
+import HomeSearch from './HomeSearch';
+import Snackbar from './Snackbar';
 
 export {
-  AlbumItem,
-  ArtistItem
+  AlbumList,
+  ArtistItem,
+  Header,
+  HomeSearch,
+  Snackbar
 };

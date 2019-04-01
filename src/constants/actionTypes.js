@@ -1,4 +1,9 @@
+export const SHOW_ERROR = 'SHOW_ERROR';
+export const HIDE_ERROR = 'HIDE_ERROR';
+
 export const CLEAN_HOME_DATA = 'CLEAN_HOME_DATA';
+export const SET_HOME_SEARCH_VALUE = 'SET_HOME_SEARCH_VALUE';
+export const SET_HOME_SEARCH_FILTER = 'SET_HOME_SEARCH_FILTER';
 
 export const GET_ARTISTS = 'GET_ARTISTS';
 export const SET_ARTISTS = 'SET_ARTISTS';

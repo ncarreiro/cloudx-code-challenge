@@ -2,32 +2,38 @@ import axios from 'axios';
 import config from '../config';
 
 import {
-  CLEAN_HOME_DATA,
   GET_ARTISTS,
   SET_ARTISTS,
   GET_ALBUMS,
   SET_ALBUMS,
   GET_ALBUM_BY_ID,
-  SET_ALBUM_DATA
+  SET_ALBUM_DATA,
+  SHOW_ERROR
 } from '../constants/actionTypes';
 
 export function getArtists(artistName) {
   return async dispatch => {
-    dispatch({type: CLEAN_HOME_DATA});
     dispatch({type: GET_ARTISTS});
     const {data} = await axios.get(`${config['SERVICE_URL']}/search?term=${artistName}&entity=allArtist`);
-    dispatch({type: SET_ARTISTS, data});
-    return data.results;
+    if (data.results.length) {
+      dispatch({type: SET_ARTISTS, data});
+    } else {
+      dispatch({type: SHOW_ERROR});
+    }
+    return data;
   }
 }
 
 export function getAlbums(albumName) {
   return async dispatch => {
-    dispatch({type: CLEAN_HOME_DATA});
     dispatch({type: GET_ALBUMS});
     const {data} = await axios.get(`${config['SERVICE_URL']}/search?term=${albumName}&entity=album`);
-    dispatch({type: SET_ALBUMS, data});
-    return data.results;
+    if (data.results.length) {
+      dispatch({type: SET_ALBUMS, data});
+    } else {
+      dispatch({type: SHOW_ERROR});
+    }
+    return data;
   }
 }
 

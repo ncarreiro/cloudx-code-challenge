@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux';
-import homeReducer from './homeReducer';
 import albumReducer from './albumReducer';
+import homeReducer from './homeReducer';
+import dialogReducer from './dialogReducer';
 
 export default combineReducers({
+  albumReducer,
   homeReducer,
-  albumReducer
+  dialogReducer
 });

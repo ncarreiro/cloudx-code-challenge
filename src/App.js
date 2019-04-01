@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Provider} from 'react-redux';
 import store from './store';
 import Router from './router';
+import { Header } from './components';
 
 import {MuiThemeProvider, createMuiTheme} from '@material-ui/core/styles';
 import purple from '@material-ui/core/colors/purple';
@@ -31,8 +32,8 @@ class App extends Component {
     return (
       <Provider store={store}>
         <MuiThemeProvider theme={theme}>
-          {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
           <CssBaseline/>
+          <Header/>
           <Router/>
         </MuiThemeProvider>
       </Provider>

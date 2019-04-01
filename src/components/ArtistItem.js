@@ -1,12 +1,13 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
+import Paper from '@material-ui/core/Paper';
 
 const ArtistItem = artistData => (
-  <li>
+  <Paper>
     <Typography variant="h6" gutterBottom>
       {artistData.artistName}
     </Typography>
-  </li>
+  </Paper>
 );
 
 export default ArtistItem;
