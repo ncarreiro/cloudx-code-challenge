@@ -77,7 +77,10 @@ class AlbumList extends React.Component {
                     to={`/album/${album.collectionId}`}
                   >
                     <Paper className={classes.paper}>
-                      <img className={classes.img} src={album.artworkUrl100} alt={album.collectionName}/>
+                      <img
+                        className={classes.img}
+                        src={album.artworkUrl100}
+                        alt={album.collectionName}/>
                       <GridListTileBar
                         title={album.collectionName}
                         subtitle={<span>by: {album.artistName}</span>}

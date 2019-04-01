@@ -24,7 +24,7 @@ class Header extends React.Component {
     return (
       <BrowserRouter>
         <AppBar
-          position="static"
+          position="sticky"
           color="default"
           className={classes.appBar}
         >

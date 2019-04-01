@@ -23,6 +23,7 @@ const styles = theme => ({
     flexGrow: 1,
     textAlign: 'center',
     paddingTop: theme.spacing.unit * 5,
+    paddingBottom: theme.spacing.unit * 5
   },
 });
 
