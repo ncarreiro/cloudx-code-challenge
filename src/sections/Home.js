@@ -1,9 +1,7 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 
 import Grid from '@material-ui/core/Grid';
 
@@ -11,8 +9,8 @@ import Typography from '@material-ui/core/Typography';
 import {withStyles} from '@material-ui/core/styles';
 
 import {
-  ArtistItem,
-  AlbumList,
+  ArtistsList,
+  AlbumsList,
   HomeSearch,
   Snackbar
 } from '../components';
@@ -28,11 +26,6 @@ const styles = theme => ({
     paddingTop: theme.spacing.unit * 10,
   },
 });
-
-const ArtistList = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
 
 class Home extends React.Component {
   state = {
@@ -70,14 +63,8 @@ class Home extends React.Component {
         {showLoading ? <Typography variant="h4" gutterBottom>
           Searching...
         </Typography> : null}
-        {artists.length > 0 ? <ArtistList>
-          {artists.map(artist => (
-            <Link to={`/artist/${artist.artistName}`}>
-              <ArtistItem key={artist.artistId} {...artist}/>
-            </Link>
-          ))}
-        </ArtistList> : null}
-        {albums.length > 0 ? <AlbumList albums={albums}/> : null}
+        {artists.length > 0 ? <ArtistsList artists={artists}/> : null}
+        {albums.length > 0 ? <AlbumsList albums={albums}/> : null}
       </Grid>
     );
   }

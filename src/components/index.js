@@ -1,12 +1,12 @@
-import AlbumList from './AlbumList';
-import ArtistItem from './ArtistItem';
+import AlbumsList from './AlbumsList';
+import ArtistsList from './ArtistsList';
 import Header from './Header';
 import HomeSearch from './HomeSearch';
 import Snackbar from './Snackbar';
 
 export {
-  AlbumList,
-  ArtistItem,
+  AlbumsList,
+  ArtistsList,
   Header,
   HomeSearch,
   Snackbar

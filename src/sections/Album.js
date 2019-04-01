@@ -20,7 +20,6 @@ const TrackItem = props => <li>{props.trackName}</li>;
 
 class Album extends React.Component {
   componentDidMount() {
-    console.log('INICIANDO ALBUM')
     this.props.getAlbumById(this.props.match.params.albumId)
   }
 

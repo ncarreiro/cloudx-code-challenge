@@ -18,8 +18,8 @@ const styles = theme => ({
   },
   paper: {
     position: 'relative',
-    height: 300,
-    width: 300,
+    height: 48,
+    width: 400,
   },
   img: {
     width: '100%',
@@ -27,33 +27,28 @@ const styles = theme => ({
   },
 });
 
-function AlbumList(props) {
-  const {classes, albums, searchValue} = props;
+function ArtistsList(props) {
+  const {classes, artists} = props;
 
   return (
     <div className={classes.root}>
-      <Typography variant="h6" gutterBottom>Results for Albums: {searchValue}</Typography>
       <Grid container className={classes.albumListContainer} spacing={16}>
         <Grid item xs={16}>
           <Grid container justify="center" spacing={16}>
-            {albums.map(album => (
-              <Grid key={album.collectionId} item>
+            {artists.map(artist => (
+              <Grid key={artist.artistId} item>
                 <Link
-                  to={`/album/${album.collectionId}`}
+                  to={`/artist/${artist.artistId}`}
                 >
-                  <Paper className={classes.paper} key={album.collectionId}>
-                    <img className={classes.img} src={album.artworkUrl100} alt={album.collectionName}/>
-                    <div className={classes.imgText}>
-                      <GridListTileBar
-                        title={album.collectionName}
-                        subtitle={<span>by: {album.artistName}</span>}
-                        actionIcon={
-                          <IconButton className={classes.icon}>
-                            <InfoIcon />
-                          </IconButton>
-                        }
-                      />
-                    </div>
+                  <Paper className={classes.paper}>
+                    <GridListTileBar
+                      title={artist.artistName}
+                      actionIcon={
+                        <IconButton className={classes.icon}>
+                          <InfoIcon />
+                        </IconButton>
+                      }
+                    />
                   </Paper>
                 </Link>
               </Grid>
@@ -65,7 +60,7 @@ function AlbumList(props) {
   );
 }
 
-AlbumList.propTypes = {
+ArtistsList.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
@@ -73,7 +68,6 @@ function mapStateToProps(state) {
   const {
     artists,
     albums,
-    searchValue
   } = state.homeReducer;
 
   const {
@@ -83,9 +77,8 @@ function mapStateToProps(state) {
   return {
     artists,
     albums,
-    searchValue,
     showError
   }
 }
 
-export default withStyles(styles)(connect(mapStateToProps, {})(AlbumList));
+export default withStyles(styles)(connect(mapStateToProps, {})(ArtistsList));
