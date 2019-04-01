@@ -9,6 +9,8 @@ import purple from '@material-ui/core/colors/purple';
 import blue from '@material-ui/core/colors/blue';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
+import 'typeface-roboto';
+
 const theme = createMuiTheme({
   palette: {
     primary: {

@@ -9,7 +9,7 @@ const initialState = {
   artists: [],
   albums: [],
   searchValue: '',
-  searchFilter: 'artists',
+  searchFilter: 'albums',
 };
 
 export default function (state = initialState, action) {
