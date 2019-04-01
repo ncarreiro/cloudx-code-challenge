@@ -5,10 +5,13 @@ import PropTypes from 'prop-types';
 
 import {withStyles} from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import IconButton from '@material-ui/core/IconButton';
 import InfoIcon from '@material-ui/icons/Info';
+
+import {Pagination} from '.';
 
 const styles = theme => ({
   root: {
@@ -26,39 +29,74 @@ const styles = theme => ({
   },
 });
 
-function AlbumList(props) {
-  const {classes, albums} = props;
+class AlbumList extends React.Component {
+  state = {allAlbums: [], currentAlbums: [], currentPage: null, totalPages: null};
 
-  return (
-    <div className={classes.root}>
-      <Grid container spacing={16}>
-        <Grid item xs={12}>
-          <Grid container justify="center" spacing={16}>
-            {albums.map(album => (
-              <Grid key={album.collectionId} item>
-                <Link
-                  to={`/album/${album.collectionId}`}
-                >
-                  <Paper className={classes.paper}>
-                    <img className={classes.img} src={album.artworkUrl100} alt={album.collectionName}/>
-                    <GridListTileBar
-                      title={album.collectionName}
-                      subtitle={<span>by: {album.artistName}</span>}
-                      actionIcon={
-                        <IconButton className={classes.icon}>
-                          <InfoIcon />
-                        </IconButton>
-                      }
-                    />
-                  </Paper>
-                </Link>
-              </Grid>
-            ))}
+  componentDidMount() {
+    this.setState({ allAlbums: this.props.albums });
+  };
+
+  onPageChanged = data => {
+    const {allAlbums} = this.state;
+    const {currentPage, totalPages, pageLimit} = data;
+
+    const offset = (currentPage - 1) * pageLimit;
+    const currentAlbums = allAlbums.slice(offset, offset + pageLimit);
+
+    this.setState({currentPage, currentAlbums, totalPages});
+  };
+
+  render() {
+    const {allAlbums, currentAlbums, currentPage, totalPages} = this.state;
+    const {classes} = this.props;
+
+    const totalAlbums = allAlbums.length;
+    if (totalAlbums === 0) return null;
+
+    return (
+      <div className={classes.root}>
+        {currentPage && (
+          <Typography variant="body1">
+            Page <strong>{ currentPage }</strong> / <strong>{ totalPages }</strong>
+          </Typography>
+        )}
+
+        <Pagination
+          totalRecords={totalAlbums}
+          pageLimit={9}
+          pageNeighbours={1}
+          onPageChanged={this.onPageChanged}
+        />
+
+        <Grid container spacing={16}>
+          <Grid item xs={12}>
+            <Grid container justify="center" spacing={16}>
+              {currentAlbums.map(album => (
+                <Grid key={album.collectionId} item>
+                  <Link
+                    to={`/album/${album.collectionId}`}
+                  >
+                    <Paper className={classes.paper}>
+                      <img className={classes.img} src={album.artworkUrl100} alt={album.collectionName}/>
+                      <GridListTileBar
+                        title={album.collectionName}
+                        subtitle={<span>by: {album.artistName}</span>}
+                        actionIcon={
+                          <IconButton className={classes.icon}>
+                            <InfoIcon />
+                          </IconButton>
+                        }
+                      />
+                    </Paper>
+                  </Link>
+                </Grid>
+              ))}
+            </Grid>
           </Grid>
         </Grid>
-      </Grid>
-    </div>
-  );
+      </div>
+    );
+  }
 }
 
 AlbumList.propTypes = {
@@ -67,7 +105,6 @@ AlbumList.propTypes = {
 
 function mapStateToProps(state) {
   const {
-    artists,
     albums,
   } = state.homeReducer;
 
@@ -76,7 +113,6 @@ function mapStateToProps(state) {
   } = state.dialogReducer;
 
   return {
-    artists,
     albums,
     showError
   }

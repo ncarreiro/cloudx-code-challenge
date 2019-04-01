@@ -43,10 +43,10 @@ class CustomPagination extends React.Component {
   }
 
   componentDidMount() {
-    this.gotoPage(1);
+    this.goToPage(1);
   }
 
-  gotoPage = page => {
+  goToPage = page => {
     const {onPageChanged = f => f} = this.props;
 
     const currentPage = Math.max(0, Math.min(page, this.totalPages));
@@ -63,17 +63,17 @@ class CustomPagination extends React.Component {
 
   handleClick = page => evt => {
     evt.preventDefault();
-    this.gotoPage(page);
+    this.goToPage(page);
   };
 
   handleMoveLeft = evt => {
     evt.preventDefault();
-    this.gotoPage(this.state.currentPage - (this.pageNeighbours * 2) - 1);
+    this.goToPage(this.state.currentPage - (this.pageNeighbours * 2) - 1);
   };
 
   handleMoveRight = evt => {
     evt.preventDefault();
-    this.gotoPage(this.state.currentPage + (this.pageNeighbours * 2) + 1);
+    this.goToPage(this.state.currentPage + (this.pageNeighbours * 2) + 1);
   };
 
   /**
@@ -179,8 +179,11 @@ class CustomPagination extends React.Component {
           );
 
           return (
-            <div key={index} className={`page-item${ currentPage === page ? ' active' : ''}`}>
-              <Button onClick={this.handleClick(page)}>{page}</Button>
+            <div key={index}>
+              <Button
+                color={currentPage === page ? 'primary' : null}
+                onClick={this.handleClick(page)}
+              >{page}</Button>
             </div>
           );
 

@@ -34,7 +34,7 @@ class ArtistsList extends React.Component {
 
   componentDidMount() {
     this.setState({ allArtists: this.props.artists });
-  }
+  };
 
   onPageChanged = data => {
     const {allArtists} = this.state;
@@ -44,7 +44,7 @@ class ArtistsList extends React.Component {
     const currentArtists = allArtists.slice(offset, offset + pageLimit);
 
     this.setState({currentPage, currentArtists, totalPages});
-  }
+  };
 
   render() {
     const {allArtists, currentArtists, currentPage, totalPages} = this.state;
@@ -55,15 +55,22 @@ class ArtistsList extends React.Component {
 
     return (
       <div className={classes.root}>
-        <Typography variant="h4">
+        <Typography variant="h5">
           <strong className="text-secondary">{totalArtists}</strong> Artists
         </Typography>
 
         {currentPage && (
-          <Typography variant="h6">
+          <Typography variant="body1">
             Page <strong>{ currentPage }</strong> / <strong>{ totalPages }</strong>
           </Typography>
         )}
+
+        <Pagination
+          totalRecords={totalArtists}
+          pageLimit={10}
+          pageNeighbours={1}
+          onPageChanged={this.onPageChanged}
+        />
 
         {currentArtists.map(artist => (
           <Grid
@@ -90,12 +97,6 @@ class ArtistsList extends React.Component {
             <Grid item xs/>
           </Grid>
         ))}
-        <Pagination
-          totalRecords={totalArtists}
-          pageLimit={10}
-          pageNeighbours={1}
-          onPageChanged={this.onPageChanged}
-        />
       </div>
     )
   }
