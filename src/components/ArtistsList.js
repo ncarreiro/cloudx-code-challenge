@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 import {withStyles} from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import IconButton from '@material-ui/core/IconButton';
 import InfoIcon from '@material-ui/icons/Info';
@@ -17,9 +16,9 @@ const styles = theme => ({
     paddingBottom: theme.spacing.unit * 2,
   },
   paper: {
+    margin: theme.spacing.unit * 2,
     position: 'relative',
     height: 48,
-    width: 400,
   },
   img: {
     width: '100%',
@@ -32,30 +31,31 @@ function ArtistsList(props) {
 
   return (
     <div className={classes.root}>
-      <Grid container className={classes.albumListContainer} spacing={16}>
-        <Grid item xs={12}>
-          <Grid container justify="center" spacing={16}>
-            {artists.map(artist => (
-              <Grid key={artist.artistId} item>
-                <Link
-                  to={`/artist/${artist.artistId}`}
-                >
-                  <Paper className={classes.paper}>
-                    <GridListTileBar
-                      title={artist.artistName}
-                      actionIcon={
-                        <IconButton className={classes.icon}>
-                          <InfoIcon />
-                        </IconButton>
-                      }
-                    />
-                  </Paper>
-                </Link>
-              </Grid>
-            ))}
+      {artists.map(artist => (
+        <Grid
+          key={artist.artistId}
+          container
+        >
+          <Grid item xs/>
+          <Grid item xs={6}>
+            <Link
+              to={`/artist/${artist.artistId}`}
+            >
+              <Paper className={classes.paper}>
+                <GridListTileBar
+                  title={artist.artistName}
+                  actionIcon={
+                    <IconButton className={classes.icon}>
+                      <InfoIcon />
+                    </IconButton>
+                  }
+                />
+              </Paper>
+            </Link>
           </Grid>
+          <Grid item xs/>
         </Grid>
-      </Grid>
+      ))}
     </div>
   );
 }

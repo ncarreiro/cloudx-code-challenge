@@ -20,6 +20,7 @@ import {
 
 const styles = theme => ({
   root: {
+    flexGrow: 1,
     textAlign: 'center',
     paddingTop: theme.spacing.unit * 10,
   },
@@ -49,20 +50,23 @@ class Home extends React.Component {
         direction="column"
         justify="flex-start"
         alignItems="stretch"
-        spacing={16}
         className={classes.root}>
-        <Grid item xs={12}>
-          <Snackbar
-            open={showError}
-            message={'Error: No results found!'}
-          />
-        </Grid>
+        <Snackbar
+          open={showError}
+          message={'Error: No results found!'}
+        />
         <Grid item xs={12}>
           <Typography variant="h4" gutterBottom>
             Search for Artists or Albums
           </Typography>
         </Grid>
-        <HomeSearch/>
+        <Grid
+          container
+          justify="center"
+          alignItems="stretch"
+        >
+          <HomeSearch/>
+        </Grid>
         {showLoading ? <Typography variant="h4" gutterBottom>
           Searching...
         </Typography> : null}

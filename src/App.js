@@ -5,6 +5,7 @@ import Router from './router';
 import { Header } from './components';
 
 import {MuiThemeProvider, createMuiTheme} from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
 import purple from '@material-ui/core/colors/purple';
 import blue from '@material-ui/core/colors/blue';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -36,7 +37,18 @@ class App extends Component {
         <MuiThemeProvider theme={theme}>
           <CssBaseline/>
           <Header/>
-          <Router/>
+          <Grid
+            container
+            justify="center"
+          >
+            <Grid item xs>
+            </Grid>
+            <Grid item xs={8}>
+              <Router/>
+            </Grid>
+            <Grid item xs>
+            </Grid>
+          </Grid>
         </MuiThemeProvider>
       </Provider>
     );

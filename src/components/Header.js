@@ -1,12 +1,28 @@
 import React from 'react';
+import {BrowserRouter, Link} from 'react-router-dom';
+import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 
-const Header = artistData => (
-  <div>
-    <a href={artistData.collectionViewUrl}>
-      <img src={require('../media/cloudx_logo.png')} alt="CloudX Logo"/><Typography>CHALLENGE (by Nahuel Carreiro)</Typography>
-    </a>
-  </div>
-);
+class Header extends React.Component {
+  render() {
+    return (
+      <BrowserRouter>
+        <Grid
+          container
+          direction="row"
+        >
+          <Link to="/">
+            <Grid>
+              <img src={require('../media/cloudx_logo.png')} alt="CloudX Logo"/>
+            </Grid>
+            <Grid>
+              <Typography>CHALLENGE (by Nahuel Carreiro)</Typography>
+            </Grid>
+          </Link>
+        </Grid>
+      </BrowserRouter>
+    )
+  }
+}
 
 export default Header;

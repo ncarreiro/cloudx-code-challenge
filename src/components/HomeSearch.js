@@ -60,8 +60,7 @@ class HomeSearch extends React.Component {
           this.handleSearch(e);
         }}
       >
-        <Grid
-          container>
+        <Grid container>
           <Grid item xs={8}>
             <FormControl
               fullWidth>
