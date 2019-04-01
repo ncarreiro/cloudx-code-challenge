@@ -1,37 +1,64 @@
 import React from 'react';
 import {BrowserRouter, Link} from 'react-router-dom';
+import PropTypes from 'prop-types';
+
+import {withStyles} from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 
+const styles = theme => ({
+  appBar: {
+    padding: theme.spacing.unit,
+  },
+  logo: {
+    paddingRight: theme.spacing.unit * 2,
+  }
+});
+
 class Header extends React.Component {
   render() {
+    const {classes} = this.props;
+
     return (
       <BrowserRouter>
-        <Grid
-          container
-          justify="flex-start"
-          alignItems="center"
-          style={{padding: '10px'}}
+        <AppBar
+          position="static"
+          color="default"
+          className={classes.appBar}
         >
-          <Link to="/">
-            <img
-              src={require('../media/cloudx_logo.png')}
-              alt="CloudX Logo"
-              style={{paddingRight: '15px'}}
-            />
-          </Link>
-          <Typography
-            variant="h4"
-            gutterBottom
-          >|</Typography>
-          <Typography
-            variant="h6"
-            gutterBottom
-          >&nbsp;Code Challenge by Nahuel Carreiro</Typography>
-        </Grid>
+          <Toolbar>
+            <Grid
+              container
+              justify="flex-start"
+              alignItems="center"
+            >
+              <Link to="/">
+                <img
+                  src={require('../media/cloudx_logo.png')}
+                  alt="CloudX Logo"
+                  className={classes.logo}
+                />
+              </Link>
+              <Typography
+                variant="h4"
+                style={{marginBottom: '10px'}}
+              >|</Typography>
+              <Typography
+                variant="h6"
+                style={{marginLeft: '10px', marginBottom: '6px'}}
+              >Code Challenge by Nahuel Carreiro</Typography>
+            </Grid>
+          </Toolbar>
+        </AppBar>
       </BrowserRouter>
     )
   }
 }
 
-export default Header;
+Header.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(Header);
