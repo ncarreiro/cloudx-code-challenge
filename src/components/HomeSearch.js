@@ -7,6 +7,7 @@ import {
 } from "../actions/homeActions";
 import {getAlbums, getArtists} from "../actions/itunesActions";
 
+import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
@@ -58,22 +59,33 @@ class HomeSearch extends React.Component {
           e.preventDefault();
           this.handleSearch(e);
         }}
-        style={{display: 'flex', justifyContent: 'center', alignItems: 'bottom'}}
       >
-        <TextField
-          value={searchValue}
-          placeholder="Search..."
-          onChange={this.handleType}
-        />
-        <FormControl variant="filled">
-          <Select
-            value={searchFilter}
-            onChange={this.handleFilter}
-          >
-            <MenuItem value="artists">Artists</MenuItem>
-            <MenuItem value="albums">Albums</MenuItem>
-          </Select>
-        </FormControl>
+        <Grid
+          container>
+          <Grid item xs={8}>
+            <FormControl
+              fullWidth>
+              <TextField
+                fullWidth
+                value={searchValue}
+                placeholder="Search..."
+                onChange={this.handleType}
+              />
+            </FormControl>
+          </Grid>
+          <Grid item xs={4}>
+            <FormControl
+              fullWidth>
+              <Select
+                value={searchFilter}
+                onChange={this.handleFilter}
+              >
+                <MenuItem value="artists">Artists</MenuItem>
+                <MenuItem value="albums">Albums</MenuItem>
+              </Select>
+            </FormControl>
+          </Grid>
+        </Grid>
       </form>
     )
   }

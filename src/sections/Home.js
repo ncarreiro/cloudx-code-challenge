@@ -4,7 +4,6 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 
 import Grid from '@material-ui/core/Grid';
-
 import Typography from '@material-ui/core/Typography';
 import {withStyles} from '@material-ui/core/styles';
 
@@ -21,7 +20,6 @@ import {
 
 const styles = theme => ({
   root: {
-    flexGrow: 1,
     textAlign: 'center',
     paddingTop: theme.spacing.unit * 10,
   },
@@ -50,15 +48,20 @@ class Home extends React.Component {
         container
         direction="column"
         justify="flex-start"
-        alignItems="center"
+        alignItems="stretch"
+        spacing={16}
         className={classes.root}>
-        <Snackbar
-          open={showError}
-          message={'Error: No results found!'}
-        />
-        <Typography variant="h6" gutterBottom>
-          Search for Artists or Albums
-        </Typography>
+        <Grid item xs={12}>
+          <Snackbar
+            open={showError}
+            message={'Error: No results found!'}
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <Typography variant="h4" gutterBottom>
+            Search for Artists or Albums
+          </Typography>
+        </Grid>
         <HomeSearch/>
         {showLoading ? <Typography variant="h4" gutterBottom>
           Searching...

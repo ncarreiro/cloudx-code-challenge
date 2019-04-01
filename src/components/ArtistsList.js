@@ -33,7 +33,7 @@ function ArtistsList(props) {
   return (
     <div className={classes.root}>
       <Grid container className={classes.albumListContainer} spacing={16}>
-        <Grid item xs={16}>
+        <Grid item xs={12}>
           <Grid container justify="center" spacing={16}>
             {artists.map(artist => (
               <Grid key={artist.artistId} item>
