@@ -9,16 +9,25 @@ class Header extends React.Component {
       <BrowserRouter>
         <Grid
           container
-          direction="row"
+          justify="flex-start"
+          alignItems="center"
+          style={{padding: '10px'}}
         >
           <Link to="/">
-            <Grid>
-              <img src={require('../media/cloudx_logo.png')} alt="CloudX Logo"/>
-            </Grid>
-            <Grid>
-              <Typography>CHALLENGE (by Nahuel Carreiro)</Typography>
-            </Grid>
+            <img
+              src={require('../media/cloudx_logo.png')}
+              alt="CloudX Logo"
+              style={{paddingRight: '15px'}}
+            />
           </Link>
+          <Typography
+            variant="h4"
+            gutterBottom
+          >|</Typography>
+          <Typography
+            variant="h6"
+            gutterBottom
+          >&nbsp;Code Challenge by Nahuel Carreiro</Typography>
         </Grid>
       </BrowserRouter>
     )

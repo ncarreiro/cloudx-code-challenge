@@ -56,7 +56,10 @@ class Home extends React.Component {
           message={'Error: No results found!'}
         />
         <Grid item xs={12}>
-          <Typography variant="h4" gutterBottom>
+          <Typography
+            variant="h4"
+            color="primary"
+            gutterBottom>
             Search for Artists or Albums
           </Typography>
         </Grid>

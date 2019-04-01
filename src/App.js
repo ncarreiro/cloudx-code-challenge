@@ -6,27 +6,30 @@ import { Header } from './components';
 
 import {MuiThemeProvider, createMuiTheme} from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import purple from '@material-ui/core/colors/purple';
-import blue from '@material-ui/core/colors/blue';
+import orange from '@material-ui/core/colors/orange';
+import grey from '@material-ui/core/colors/grey';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
 import 'typeface-roboto';
 
 const theme = createMuiTheme({
   palette: {
+    type: 'dark',
     primary: {
-      light: purple[300],
-      main: purple[500],
-      dark: purple[700],
+      light: orange[300],
+      main: orange[500],
+      dark: orange[700],
     },
     secondary: {
-      light: blue[300],
-      main: blue[500],
-      dark: blue[700],
+      light: grey[300],
+      main: grey[500],
+      dark: grey[700],
     },
   },
   typography: {
     useNextVariants: true,
+    fontSize: 16,
+    htmlFontSize: 16,
   },
 });
 
