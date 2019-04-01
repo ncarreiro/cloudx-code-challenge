@@ -2,6 +2,7 @@ import axios from 'axios';
 import config from '../config';
 
 import {
+  CLEAN_HOME_DATA,
   GET_ARTISTS,
   SET_ARTISTS,
   GET_ALBUMS,
@@ -13,6 +14,7 @@ import {
 
 export function getArtists(artistName) {
   return async dispatch => {
+    dispatch({type: CLEAN_HOME_DATA});
     dispatch({type: GET_ARTISTS});
     const {data} = await axios.get(`${config['SERVICE_URL']}/search?term=${artistName}&entity=allArtist`);
     if (data.results.length) {
@@ -26,6 +28,7 @@ export function getArtists(artistName) {
 
 export function getAlbums(albumName) {
   return async dispatch => {
+    dispatch({type: CLEAN_HOME_DATA});
     dispatch({type: GET_ALBUMS});
     const {data} = await axios.get(`${config['SERVICE_URL']}/search?term=${albumName}&entity=album`);
     if (data.results.length) {
