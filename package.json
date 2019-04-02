@@ -2,10 +2,12 @@
   "name": "cloudx_test",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://ncarreiro.github.io/cloudx-code-challenge/",
   "dependencies": {
     "@material-ui/core": "^3.9.3",
     "@material-ui/icons": "^3.0.2",
     "axios": "^0.18.0",
+    "gh-pages": "^2.0.1",
     "history": "^4.9.0",
     "lodash": "^4.17.11",
     "moment": "^2.24.0",
@@ -23,7 +25,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build && mv build/ docs/",
+    "build": "react-scripts build",
+    "deploy": "gh-pages -d build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

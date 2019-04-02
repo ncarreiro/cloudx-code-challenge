@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {Router, Route, Switch} from 'react-router-dom';
+import {HashRouter, Route, Switch} from 'react-router-dom';
 import {createBrowserHistory} from 'history';
 
 import {
@@ -13,15 +13,15 @@ import {
 class AppRouter extends Component {
   render() {
     return (
-      <Router history={createBrowserHistory()}>
+      <HashRouter history={createBrowserHistory()}>
         <Switch>
-          <Route exact path="/" component={Home}/>
-          <Route exact path="/artist/:artistId" component={Artist}/>
           {/*<Route exact path="/artist/:artistName" component={Artist}/>*/}
+          <Route exact path="/artist/:artistId" component={Artist}/>
           <Route exact path="/album/:albumId" component={Album}/>
+          <Route exact path="/" component={Home}/>
           <Route component={NotFound}/>
         </Switch>
-      </Router>
+      </HashRouter>
     );
   }
 }
