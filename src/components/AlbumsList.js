@@ -108,15 +108,10 @@ AlbumList.propTypes = {
 
 function mapStateToProps(state) {
   const {
-    albums,
-  } = state.homeReducer;
-
-  const {
     showError
   } = state.dialogReducer;
 
   return {
-    albums,
     showError
   }
 }

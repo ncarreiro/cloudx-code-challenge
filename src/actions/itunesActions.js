@@ -42,6 +42,23 @@ export function getAlbums(artistName) {
   }
 }
 
+export function getArtistAlbumsByName(artistName) {
+  return async dispatch => {
+    dispatch({type: GET_ARTIST_BY_ID});
+      const parsedArtistName = artistName
+        .toLowerCase()
+        .replace(/[^\w\s]/gi, '');
+
+      const {data} = await axios.get(`${config['SERVICE_URL']}/search?term=${parsedArtistName}&entity=album`);
+      if (data.results.length) {
+        dispatch({type: SET_ARTIST_DATA, data});
+      } else {
+        dispatch({type: SHOW_ERROR});
+      }
+      return data;
+    }
+}
+
 export function getArtistAlbumsById(artistId) {
   return async dispatch => {
     dispatch({type: GET_ARTIST_BY_ID});

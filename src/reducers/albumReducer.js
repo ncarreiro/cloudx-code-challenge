@@ -13,6 +13,7 @@ export default function (state = initialState, action) {
       const {results} = action.data;
       return {
         ...state,
+        artistName: results[0].artistName,
         albumName: results[0].collectionName,
         albumArtwork: results[0].artworkUrl100,
         albumTracks: tail(results)

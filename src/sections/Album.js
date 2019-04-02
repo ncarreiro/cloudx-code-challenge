@@ -2,11 +2,18 @@ import React from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
+import Moment from 'react-moment';
 
 import {withStyles} from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
+
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
 
 import {
   getAlbumById
@@ -32,9 +39,17 @@ const styles = theme => ({
 });
 
 const TrackItem = props => (
-  <Grid item xs>
-    <Typography variant="body1">{props.trackName}</Typography>
-  </Grid>
+  <TableRow key={props.trackId}>
+    <TableCell component="th" scope="props">
+      {props.trackNumber}
+    </TableCell>
+    <TableCell component="th" scope="props">
+      {props.trackName}
+    </TableCell>
+    <TableCell align="right"><Moment format="mm:ss">{props.trackTimeMillis}</Moment></TableCell>
+    <TableCell align="right">{props.primaryGenreName}</TableCell>
+    <TableCell align="right">{props.collectionPrice}</TableCell>
+  </TableRow>
 );
 
 class AlbumView extends React.Component {
@@ -45,6 +60,7 @@ class AlbumView extends React.Component {
   render() {
     const {
       classes,
+      artistName,
       albumName,
       albumTracks,
       albumArtwork
@@ -64,10 +80,26 @@ class AlbumView extends React.Component {
               alt={albumName}/>
           </Paper>
         </Grid>
-        <Typography variant="h2" gutterBottom>
+        <Typography variant="h4" gutterBottom>
           {albumName}
         </Typography>
-        {albumTracks.length ? albumTracks.map(track => <TrackItem key={track.trackId} {...track}/>) : null}
+        <Typography variant="body1" gutterBottom>
+          by {artistName}
+        </Typography>
+        <Table className={classes.table}>
+          <TableHead>
+            <TableRow>
+              <TableCell/>
+              <TableCell>Name</TableCell>
+              <TableCell align="right">Duration</TableCell>
+              <TableCell align="right">Genre</TableCell>
+              <TableCell align="right">Price</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {albumTracks.length ? albumTracks.map(track => <TrackItem key={track.trackId} {...track}/>) : null}
+          </TableBody>
+        </Table>
       </Grid>
     );
   }
@@ -79,12 +111,14 @@ AlbumView.propTypes = {
 
 function mapStateToProps(state) {
   const {
+    artistName,
     albumName,
     albumTracks,
     albumArtwork
   } = state.albumReducer;
 
   return {
+    artistName,
     albumName,
     albumTracks,
     albumArtwork

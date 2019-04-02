@@ -9,7 +9,7 @@ import Typography from '@material-ui/core/Typography';
 
 import {AlbumsList} from '../components';
 
-import {getArtistAlbumsById} from '../actions/itunesActions';
+import {getArtistAlbumsByName} from '../actions/itunesActions';
 
 const styles = theme => ({
   root: {
@@ -32,7 +32,7 @@ const styles = theme => ({
 
 class ArtistView extends React.Component {
   componentDidMount() {
-    this.props.getArtistAlbumsById(this.props.match.params.artistId)
+    this.props.getArtistAlbumsByName(this.props.match.params.artistName)
   }
 
   render() {
@@ -51,7 +51,7 @@ class ArtistView extends React.Component {
         <Typography variant="h2" gutterBottom>
           {artistName}
         </Typography>
-        {/*{artistAlbums.length > 0 ? <AlbumsList albums={artistAlbums}/> : null}*/}
+        {artistAlbums.length > 0 ? <AlbumsList albums={artistAlbums}/> : null}
       </Grid>
     );
   }
@@ -75,7 +75,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    getArtistAlbumsById: bindActionCreators(getArtistAlbumsById, dispatch)
+    getArtistAlbumsByName: bindActionCreators(getArtistAlbumsByName, dispatch)
   }
 }
 

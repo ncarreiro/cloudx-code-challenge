@@ -10,6 +10,7 @@ import orange from '@material-ui/core/colors/orange';
 import grey from '@material-ui/core/colors/grey';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
+import 'moment-timezone';
 import 'typeface-roboto';
 
 const theme = createMuiTheme({
