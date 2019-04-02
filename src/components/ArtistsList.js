@@ -17,6 +17,7 @@ const styles = theme => ({
   root: {
     marginTop: theme.spacing.unit * 5,
     marginBottom: theme.spacing.unit * 5,
+    overflow: 'hidden'
   },
   paper: {
     margin: theme.spacing.unit * 2,

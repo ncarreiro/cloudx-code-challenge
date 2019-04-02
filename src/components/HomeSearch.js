@@ -82,15 +82,18 @@ class HomeSearch extends React.Component {
           </Grid>
           <Grid
             item
+            xs={1}
             md={2}
           />
           <Grid
             item
-            xs={8}
+            xs={7}
             md={6}
           >
             <FormControl
-              fullWidth>
+              fullWidth
+              style={{marginTop: '1px'}}
+            >
               <TextField
                 fullWidth
                 value={searchValue}
@@ -101,7 +104,7 @@ class HomeSearch extends React.Component {
           </Grid>
           <Grid
             item
-            xs={4}
+            xs={3}
             md={2}
           >
             <FormControl
@@ -117,6 +120,7 @@ class HomeSearch extends React.Component {
           </Grid>
           <Grid
             item
+            xs={1}
             md={2}
           />
           {showLoader ? <Loader/> : null}

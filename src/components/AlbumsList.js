@@ -14,6 +14,7 @@ const styles = theme => ({
   root: {
     marginTop: theme.spacing.unit * 5,
     marginBottom: theme.spacing.unit * 5,
+    overflow: 'hidden'
   }
 });
 
@@ -48,7 +49,11 @@ class AlbumList extends React.Component {
     if (totalAlbums === 0) return null;
 
     return (
-      <div className={classes.root}>
+      <Grid
+        container
+        alignContent="stretch"
+        alignItems="stretch"
+        className={classes.root}>
         <Grid
           container
           spacing={16}
@@ -68,7 +73,7 @@ class AlbumList extends React.Component {
             Page <strong>{ currentPage }</strong> / <strong>{ totalPages }</strong>
           </Typography>
         )}
-      </div>
+      </Grid>
     );
   }
 }
