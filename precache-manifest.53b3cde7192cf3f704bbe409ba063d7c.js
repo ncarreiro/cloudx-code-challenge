@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "d8bcbe724fd6f4ba44d0ee6a2675890f",
-    "url": "/cloudx-code-challenge/static/media/roboto-latin-400italic.d8bcbe72.woff2"
+    "revision": "bafb105baeb22d965c70fe52ba6b49d9",
+    "url": "/cloudx-code-challenge/static/media/roboto-latin-400.bafb105b.woff"
   },
   {
-    "revision": "90e79abfb2aa5f5711c2",
-    "url": "/cloudx-code-challenge/static/js/main.9a40cf70.chunk.js"
+    "revision": "580c00adecfed7fded78",
+    "url": "/cloudx-code-challenge/static/js/main.a89c2d7f.chunk.js"
   },
   {
     "revision": "bc833e725c137257c2c42a789845d82f",
@@ -20,24 +20,24 @@ self.__precacheManifest = [
     "url": "/cloudx-code-challenge/static/media/roboto-latin-100.987b8457.woff2"
   },
   {
-    "revision": "e9dbbe8a693dd275c16d32feb101f1c1",
-    "url": "/cloudx-code-challenge/static/media/roboto-latin-100.e9dbbe8a.woff"
-  },
-  {
     "revision": "6232f43d15b0e7a0bf0fe82e295bdd06",
     "url": "/cloudx-code-challenge/static/media/roboto-latin-100italic.6232f43d.woff2"
+  },
+  {
+    "revision": "e9dbbe8a693dd275c16d32feb101f1c1",
+    "url": "/cloudx-code-challenge/static/media/roboto-latin-100.e9dbbe8a.woff"
   },
   {
     "revision": "d704bb3d579b7d5e40880c75705c8a71",
     "url": "/cloudx-code-challenge/static/media/roboto-latin-100italic.d704bb3d.woff"
   },
   {
-    "revision": "a1471d1d6431c893582a5f6a250db3f9",
-    "url": "/cloudx-code-challenge/static/media/roboto-latin-300.a1471d1d.woff"
-  },
-  {
     "revision": "55536c8e9e9a532651e3cf374f290ea3",
     "url": "/cloudx-code-challenge/static/media/roboto-latin-300.55536c8e.woff2"
+  },
+  {
+    "revision": "a1471d1d6431c893582a5f6a250db3f9",
+    "url": "/cloudx-code-challenge/static/media/roboto-latin-300.a1471d1d.woff"
   },
   {
     "revision": "d69924b98acd849cdeba9fbff3f88ea6",
@@ -52,8 +52,8 @@ self.__precacheManifest = [
     "url": "/cloudx-code-challenge/static/media/roboto-latin-400.5d4aeb4e.woff2"
   },
   {
-    "revision": "bafb105baeb22d965c70fe52ba6b49d9",
-    "url": "/cloudx-code-challenge/static/media/roboto-latin-400.bafb105b.woff"
+    "revision": "d8bcbe724fd6f4ba44d0ee6a2675890f",
+    "url": "/cloudx-code-challenge/static/media/roboto-latin-400italic.d8bcbe72.woff2"
   },
   {
     "revision": "32148db5414a2380ed2c",
@@ -68,10 +68,6 @@ self.__precacheManifest = [
     "url": "/cloudx-code-challenge/static/media/roboto-latin-500.28546717.woff2"
   },
   {
-    "revision": "de8b7431b74642e830af4d4f4b513ec9",
-    "url": "/cloudx-code-challenge/static/media/roboto-latin-500.de8b7431.woff"
-  },
-  {
     "revision": "510dec37fa69fba39593e01a469ee018",
     "url": "/cloudx-code-challenge/static/media/roboto-latin-500italic.510dec37.woff2"
   },
@@ -80,12 +76,16 @@ self.__precacheManifest = [
     "url": "/cloudx-code-challenge/static/media/roboto-latin-500italic.ffcc050b.woff"
   },
   {
-    "revision": "cf6613d1adf490972c557a8e318e0868",
-    "url": "/cloudx-code-challenge/static/media/roboto-latin-700.cf6613d1.woff"
-  },
-  {
     "revision": "037d830416495def72b7881024c14b7b",
     "url": "/cloudx-code-challenge/static/media/roboto-latin-700.037d8304.woff2"
+  },
+  {
+    "revision": "de8b7431b74642e830af4d4f4b513ec9",
+    "url": "/cloudx-code-challenge/static/media/roboto-latin-500.de8b7431.woff"
+  },
+  {
+    "revision": "cf6613d1adf490972c557a8e318e0868",
+    "url": "/cloudx-code-challenge/static/media/roboto-latin-700.cf6613d1.woff"
   },
   {
     "revision": "010c1aeee3c6d1cbb1d5761d80353823",
@@ -104,15 +104,15 @@ self.__precacheManifest = [
     "url": "/cloudx-code-challenge/static/media/roboto-latin-900.8c2ade50.woff"
   },
   {
-    "revision": "51bc98e507acbb88d19a",
-    "url": "/cloudx-code-challenge/static/js/2.31f19b28.chunk.js"
+    "revision": "7b854a441a0dc95a6e6a",
+    "url": "/cloudx-code-challenge/static/js/2.5796f733.chunk.js"
   },
   {
-    "revision": "51bc98e507acbb88d19a",
+    "revision": "7b854a441a0dc95a6e6a",
     "url": "/cloudx-code-challenge/static/css/2.eb6f98b8.chunk.css"
   },
   {
-    "revision": "6b76890b535020c0b18806b2386f9027",
+    "revision": "01e625193ced5ca5bdcbf82ad94111cc",
     "url": "/cloudx-code-challenge/index.html"
   }
 ];
