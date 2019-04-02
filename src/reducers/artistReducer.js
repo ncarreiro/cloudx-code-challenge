@@ -1,4 +1,4 @@
-// import {tail} from 'lodash';
+import {tail} from 'lodash';
 
 import {SET_ARTIST_DATA} from "../constants/actionTypes";
 
@@ -14,7 +14,7 @@ export default function (state = initialState, action) {
       return {
         ...state,
         artistName: results[0].artistName,
-        artistAlbums: results
+        artistAlbums: tail(results)
       };
     }
     default:
