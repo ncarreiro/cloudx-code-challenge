@@ -80,10 +80,11 @@ class ArtistsList extends React.Component {
             <Grid item xs/>
             <Grid item xs={6}>
               <Link
-                to={`/artist/${artist.artistName
-                  .toLowerCase()
-                  .replace(/[^\w\s]/gi, '')
-                  .replace(/ /g,"+")}`}
+                to={`/artist/${artist.artistId}`}
+                // to={`/artist/${artist.artistName
+                //   .toLowerCase()
+                //   .replace(/[^\w\s]/gi, '')
+                //   .replace(/ /g,"+")}`}
               >
                 <Paper className={classes.paper}>
                   <GridListTileBar
