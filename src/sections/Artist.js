@@ -7,7 +7,10 @@ import {withStyles} from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 
-import {AlbumsList} from '../components';
+import {
+  AlbumsList,
+  Loader
+} from '../components';
 
 import {
   getArtistAlbumsById,
@@ -17,8 +20,8 @@ import {
 const styles = theme => ({
   root: {
     textAlign: 'center',
-    paddingTop: theme.spacing.unit * 5,
-    paddingBottom: theme.spacing.unit * 5
+    paddingTop: theme.spacing.unit * 10,
+    paddingBottom: theme.spacing.unit * 10
   },
   paper: {
     position: 'relative',
@@ -34,21 +37,30 @@ const styles = theme => ({
 });
 
 class ArtistView extends React.Component {
-  componentDidMount() {
-    const {history} = this.props;
+  state = {
+    selectedArtistId: ''
+  };
 
+  componentDidMount() {
     const {
-      artistId,
-      artistName
+      artistId
     } = this.props.match.params;
 
-    if (artistId) {
-      return this.props.getArtistAlbumsById(artistId);
-    } else if (artistName) {
-      return this.props.getArtistAlbumsByName(artistId)
-    } else {
-      history.push('/')
+    this.setArtistId(artistId);
+    this.props.getArtistAlbumsById(artistId);
+  }
+
+  setArtistId(artistId) {
+    this.setState({selectedArtistId: artistId})
+  }
+
+  componentWillReceiveProps(newProps) {
+    const {artistId} = newProps.match.params;
+    const {selectedArtistId} = this.state;
+    if (artistId === selectedArtistId) {
+      return true
     }
+    this.props.getArtistAlbumsById(artistId);
   }
 
   render() {
@@ -56,6 +68,7 @@ class ArtistView extends React.Component {
       classes,
       artistName,
       artistAlbums,
+      showLoader
     } = this.props;
 
     return (
@@ -64,10 +77,18 @@ class ArtistView extends React.Component {
         direction="column"
         alignItems="center"
         className={classes.root}>
-        <Typography variant="h4" gutterBottom>
-          {artistName}
-        </Typography>
-        {artistAlbums.length > 0 ? <AlbumsList albums={artistAlbums}/> : null}
+        {showLoader ? <Grid
+          container
+          justify="center"
+          alignItems="stretch"
+        >
+          <Loader/>
+        </Grid> : <Grid item>
+          <Typography variant="h4" gutterBottom>
+            {artistName}
+          </Typography>
+          {artistAlbums.length > 0 ? <AlbumsList albums={artistAlbums}/> : null}
+        </Grid>}
       </Grid>
     );
   }
@@ -78,6 +99,7 @@ ArtistView.propTypes = {
 };
 
 function mapStateToProps(state) {
+  const {showLoader} = state.loaderReducer;
   const {
     artistName,
     artistAlbums
@@ -85,7 +107,8 @@ function mapStateToProps(state) {
 
   return {
     artistName,
-    artistAlbums
+    artistAlbums,
+    showLoader
   }
 }
 

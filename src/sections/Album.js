@@ -15,6 +15,8 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 
+import {Loader} from '../components';
+
 import {
   getAlbumById
 } from '../actions/itunesActions';
@@ -22,8 +24,8 @@ import {
 const styles = theme => ({
   root: {
     textAlign: 'center',
-    paddingTop: theme.spacing.unit * 5,
-    paddingBottom: theme.spacing.unit * 5
+    paddingTop: theme.spacing.unit * 10,
+    paddingBottom: theme.spacing.unit * 10
   },
   paper: {
     position: 'relative',
@@ -63,44 +65,54 @@ class AlbumView extends React.Component {
       artistName,
       albumName,
       albumTracks,
-      albumArtwork
+      albumArtwork,
+      showLoader
     } = this.props;
 
     return (
-      <Grid
-        container
-        direction="column"
-        alignItems="center"
-        className={classes.root}>
-        <Grid item xs>
-          <Paper className={classes.paper}>
-            <img
-              className={classes.img}
-              src={albumArtwork}
-              alt={albumName}/>
-          </Paper>
-        </Grid>
-        <Typography variant="h4" gutterBottom>
-          {albumName}
-        </Typography>
-        <Typography variant="body1" gutterBottom>
-          by {artistName}
-        </Typography>
-        <Table className={classes.table}>
-          <TableHead>
-            <TableRow>
-              <TableCell/>
-              <TableCell>Name</TableCell>
-              <TableCell align="right">Duration</TableCell>
-              <TableCell align="right">Genre</TableCell>
-              <TableCell align="right">Price</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {albumTracks.length ? albumTracks.map(track => <TrackItem key={track.trackId} {...track}/>) : null}
-          </TableBody>
-        </Table>
-      </Grid>
+      <div>
+        {showLoader ?
+          <Grid
+            container
+            justify="center"
+            alignItems="stretch"
+          >
+          <Loader/>
+        </Grid> : <Grid
+          container
+          direction="column"
+          alignItems="center"
+          className={classes.root}>
+          <Grid item xs>
+            <Paper className={classes.paper}>
+              <img
+                className={classes.img}
+                src={albumArtwork}
+                alt={albumName}/>
+            </Paper>
+          </Grid>
+          <Typography variant="h4" gutterBottom>
+            {albumName}
+          </Typography>
+          <Typography variant="body1" gutterBottom>
+            by {artistName}
+          </Typography>
+          <Table className={classes.table}>
+            <TableHead>
+              <TableRow>
+                <TableCell/>
+                <TableCell>Name</TableCell>
+                <TableCell align="right">Duration</TableCell>
+                <TableCell align="right">Genre</TableCell>
+                <TableCell align="right">Price</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {albumTracks.length ? albumTracks.map(track => <TrackItem key={track.trackId} {...track}/>) : null}
+            </TableBody>
+          </Table>
+        </Grid>}
+      </div>
     );
   }
 }
@@ -110,6 +122,7 @@ AlbumView.propTypes = {
 };
 
 function mapStateToProps(state) {
+  const {showLoader} = state.loaderReducer;
   const {
     artistName,
     albumName,
@@ -121,7 +134,8 @@ function mapStateToProps(state) {
     artistName,
     albumName,
     albumTracks,
-    albumArtwork
+    albumArtwork,
+    showLoader
   }
 }
 

@@ -11,6 +11,7 @@ import {
   ArtistsList,
   AlbumsList,
   HomeSearch,
+  Loader,
   Snackbar
 } from '../components';
 
@@ -22,14 +23,13 @@ const styles = theme => ({
   root: {
     flexGrow: 1,
     textAlign: 'center',
-    paddingTop: theme.spacing.unit * 5,
-    paddingBottom: theme.spacing.unit * 5
+    paddingTop: theme.spacing.unit * 10,
+    paddingBottom: theme.spacing.unit * 10
   },
 });
 
 class Home extends React.Component {
   state = {
-    showLoading: false,
     showError: false,
   };
 
@@ -38,12 +38,9 @@ class Home extends React.Component {
       classes,
       artists,
       albums,
-      showError
+      showError,
+      showLoader
     } = this.props;
-
-    const {
-      showLoading,
-    } = this.state;
 
     return (
       <Grid
@@ -71,9 +68,15 @@ class Home extends React.Component {
         >
           <HomeSearch/>
         </Grid>
-        {showLoading ? <Typography variant="h4" gutterBottom>
-          Searching...
-        </Typography> : null}
+
+        {showLoader ? <Grid
+          container
+          justify="center"
+          alignItems="stretch"
+        >
+          <Loader/>
+        </Grid> : null}
+
         {artists.length > 0 ? <ArtistsList artists={artists}/> : null}
         {albums.length > 0 ? <AlbumsList albums={albums}/> : null}
       </Grid>
@@ -86,19 +89,19 @@ Home.propTypes = {
 };
 
 function mapStateToProps(state) {
-  const {
-    artists,
-    albums,
-  } = state.homeReducer;
+  const {showLoader} = state.loaderReducer;
+  const {showError} = state.dialogReducer;
 
   const {
-    showError
-  } = state.dialogReducer;
+    artists,
+    albums
+  } = state.homeReducer;
 
   return {
     artists,
     albums,
-    showError
+    showError,
+    showLoader
   }
 }
 

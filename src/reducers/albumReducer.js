@@ -1,6 +1,8 @@
 import {tail} from 'lodash';
 
-import {SET_ALBUM_DATA} from "../constants/actionTypes";
+import {
+  CLEAN_ALBUM_DATA,
+  SET_ALBUM_DATA} from "../constants/actionTypes";
 
 const initialState = {
   albumName: '',
@@ -9,6 +11,9 @@ const initialState = {
 
 export default function (state = initialState, action) {
   switch (action.type) {
+    case CLEAN_ALBUM_DATA: {
+      return initialState;
+    }
     case SET_ALBUM_DATA: {
       const {results} = action.data;
       return {

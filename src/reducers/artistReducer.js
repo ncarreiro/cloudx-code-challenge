@@ -1,6 +1,9 @@
 import {tail} from 'lodash';
 
-import {SET_ARTIST_DATA} from "../constants/actionTypes";
+import {
+  CLEAN_ARTIST_DATA,
+  SET_ARTIST_DATA
+} from "../constants/actionTypes";
 
 const initialState = {
   artistName: '',
@@ -9,6 +12,9 @@ const initialState = {
 
 export default function (state = initialState, action) {
   switch (action.type) {
+    case CLEAN_ARTIST_DATA: {
+      return initialState;
+    }
     case SET_ARTIST_DATA: {
       const {results} = action.data;
       return {
