@@ -1,15 +1,15 @@
 {
-  "main.js": "/cloudx-code-challenge/static/js/main.eec85d23.chunk.js",
-  "main.js.map": "/cloudx-code-challenge/static/js/main.eec85d23.chunk.js.map",
+  "main.js": "/cloudx-code-challenge/static/js/main.f1385ad8.chunk.js",
+  "main.js.map": "/cloudx-code-challenge/static/js/main.f1385ad8.chunk.js.map",
   "runtime~main.js": "/cloudx-code-challenge/static/js/runtime~main.a793c5c6.js",
   "runtime~main.js.map": "/cloudx-code-challenge/static/js/runtime~main.a793c5c6.js.map",
-  "static/css/2.1da0097a.chunk.css": "/cloudx-code-challenge/static/css/2.1da0097a.chunk.css",
-  "static/js/2.d0d129c2.chunk.js": "/cloudx-code-challenge/static/js/2.d0d129c2.chunk.js",
-  "static/js/2.d0d129c2.chunk.js.map": "/cloudx-code-challenge/static/js/2.d0d129c2.chunk.js.map",
+  "static/css/2.62750b59.chunk.css": "/cloudx-code-challenge/static/css/2.62750b59.chunk.css",
+  "static/js/2.de2f9e8c.chunk.js": "/cloudx-code-challenge/static/js/2.de2f9e8c.chunk.js",
+  "static/js/2.de2f9e8c.chunk.js.map": "/cloudx-code-challenge/static/js/2.de2f9e8c.chunk.js.map",
   "index.html": "/cloudx-code-challenge/index.html",
-  "precache-manifest.f870c96fe9c4e181e4f2b56c079ee6c2.js": "/cloudx-code-challenge/precache-manifest.f870c96fe9c4e181e4f2b56c079ee6c2.js",
+  "precache-manifest.f18bc3b6820371fa46c3a619b2af6f3d.js": "/cloudx-code-challenge/precache-manifest.f18bc3b6820371fa46c3a619b2af6f3d.js",
   "service-worker.js": "/cloudx-code-challenge/service-worker.js",
-  "static/css/2.1da0097a.chunk.css.map": "/cloudx-code-challenge/static/css/2.1da0097a.chunk.css.map",
+  "static/css/2.62750b59.chunk.css.map": "/cloudx-code-challenge/static/css/2.62750b59.chunk.css.map",
   "static/media/material-icons.css": "/cloudx-code-challenge/static/media/MaterialIcons-Regular.d41ae58d.ttf",
   "static/media/index.css": "/cloudx-code-challenge/static/media/roboto-latin-900italic.bc833e72.woff"
 }
