@@ -85,7 +85,9 @@ class ArtistView extends React.Component {
             {artistName}
           </Typography>
         </Grid>}
-        {artistAlbums.length > 0 ? <AlbumsList albums={artistAlbums}/> : null}
+        {artistAlbums && artistAlbums.length > 0 ?
+          <AlbumsList albums={artistAlbums}/> :
+          <Typography variant="h6">No albums</Typography>}
       </Grid>
     );
   }

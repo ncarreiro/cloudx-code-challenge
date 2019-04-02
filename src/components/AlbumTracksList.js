@@ -9,15 +9,14 @@ import TableRow from '@material-ui/core/TableRow';
 
 const TrackItem = props => (
   <TableRow key={props.trackId}>
-    <TableCell component="th" scope="props">
+    <TableCell align="center">
       {props.trackNumber}
     </TableCell>
-    <TableCell component="th" scope="props">
+    <TableCell>
       {props.trackName}
     </TableCell>
     <TableCell align="right">{props.primaryGenreName}</TableCell>
     <TableCell align="right"><Moment format="mm:ss">{props.trackTimeMillis}</Moment></TableCell>
-    <TableCell align="right">$ {props.collectionPrice}</TableCell>
   </TableRow>
 );
 
@@ -35,7 +34,6 @@ class AlbumTracksList extends React.Component {
             <TableCell>Name</TableCell>
             <TableCell align="right">Genre</TableCell>
             <TableCell align="right">Duration</TableCell>
-            <TableCell align="right">Price</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

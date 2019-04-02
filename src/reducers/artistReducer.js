@@ -6,7 +6,7 @@ import {
 } from "../constants/actionTypes";
 
 const initialState = {
-  artistName: '',
+  artistName: null,
   artistAlbums: []
 };
 
