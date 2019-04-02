@@ -23,7 +23,10 @@ export function getArtists(artistName) {
     dispatch({type: SHOW_LOADER});
     dispatch({type: CLEAN_HOME_DATA});
     dispatch({type: GET_ARTISTS});
-    const {data} = await axios.get(`${'https://cors-anywhere.herokuapp.com/'}${config['SERVICE_URL']}/search?term=${artistName}&entity=allArtist`);
+    const parsedArtistName = artistName
+      .toLowerCase()
+      .replace(/[^\w\s]/gi, '');
+    const {data} = await axios.get(`${'https://cors-anywhere.herokuapp.com/'}${config['SERVICE_URL']}/search?term=${parsedArtistName}&entity=allArtist`);
     if (data.results.length) {
       dispatch({type: SET_ARTISTS, data});
     } else {
@@ -39,7 +42,10 @@ export function getAlbums(artistName) {
     dispatch({type: SHOW_LOADER});
     dispatch({type: CLEAN_HOME_DATA});
     dispatch({type: GET_ALBUMS});
-    const {data} = await axios.get(`${'https://cors-anywhere.herokuapp.com/'}${config['SERVICE_URL']}/search?term=${artistName}&entity=album`);
+    const parsedArtistName = artistName
+      .toLowerCase()
+      .replace(/[^\w\s]/gi, '');
+    const {data} = await axios.get(`${'https://cors-anywhere.herokuapp.com/'}${config['SERVICE_URL']}/search?term=${parsedArtistName}&entity=album`);
     if (data.results.length) {
       dispatch({type: SET_ALBUMS, data});
     } else {
