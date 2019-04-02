@@ -16,9 +16,9 @@ class AppRouter extends Component {
       <HashRouter history={createBrowserHistory()}>
         <Switch>
           {/*<Route exact path="/artist/:artistName" component={Artist}/>*/}
-          <Route exact path="/artist/:artistId" component={Artist}/>
-          <Route exact path="/album/:albumId" component={Album}/>
           <Route exact path="/" component={Home}/>
+          <Route path="/artist/:artistId" component={Artist}/>
+          <Route path="/album/:albumId" component={Album}/>
           <Route component={NotFound}/>
         </Switch>
       </HashRouter>
