@@ -50,7 +50,7 @@ class ArtistsList extends React.Component {
     if (totalArtists === 0) return null;
 
     return (
-      <div className={classes.root}>
+      <Grid item xs={12}>
         <Typography variant="h5">
           <strong className="text-secondary">{totalArtists}</strong> Artists
         </Typography>
@@ -97,7 +97,7 @@ class ArtistsList extends React.Component {
           pageNeighbours={1}
           onPageChanged={this.onPageChanged}
         />
-      </div>
+      </Grid>
     )
   }
 }

@@ -57,13 +57,7 @@ class AlbumView extends React.Component {
         direction="column"
         alignItems="center"
         className={classes.root}>
-        {showLoader ? <Grid
-          container
-          justify="center"
-          alignItems="stretch"
-        >
-          <Loader/>
-        </Grid> : null}
+        {showLoader ? <Loader/> : null}
         {albumArtwork && <Grid item xs>
           <Paper className={classes.paper}>
             <img

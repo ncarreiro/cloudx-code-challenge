@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import { withStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 const styles = theme => ({
@@ -11,7 +13,13 @@ const styles = theme => ({
 
 function Loader(props) {
   const { classes } = props;
-  return <CircularProgress className={classes.progress} />;
+  return <Grid
+    container
+    justify="center"
+    alignItems="stretch"
+  >
+    <CircularProgress className={classes.progress} />
+  </Grid>;
 }
 
 Loader.propTypes = {

@@ -77,18 +77,13 @@ class ArtistView extends React.Component {
         direction="column"
         alignItems="center"
         className={classes.root}>
-        {showLoader ? <Grid
-          container
-          justify="center"
-          alignItems="stretch"
-        >
-          <Loader/>
-        </Grid> : <Grid item>
+        {showLoader ? <Loader/> : null}
+        {artistName && <Grid item>
           <Typography variant="h4" gutterBottom>
             {artistName}
           </Typography>
-          {artistAlbums.length > 0 ? <AlbumsList albums={artistAlbums}/> : null}
         </Grid>}
+        {artistAlbums.length > 0 ? <AlbumsList albums={artistAlbums}/> : null}
       </Grid>
     );
   }

@@ -65,13 +65,7 @@ class Home extends React.Component {
           <HomeSearch/>
         </Grid>
 
-        {showLoader ? <Grid
-          container
-          justify="center"
-          alignItems="stretch"
-        >
-          <Loader/>
-        </Grid> : null}
+        {showLoader ? <Loader/> : null}
 
         {artists.length > 0 ? <ArtistsList artists={artists}/> : null}
         {albums.length > 0 ? <AlbumsList albums={albums}/> : null}
