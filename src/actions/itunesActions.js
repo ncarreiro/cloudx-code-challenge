@@ -18,7 +18,7 @@ export function getArtists(artistName) {
   return async dispatch => {
     dispatch({type: CLEAN_HOME_DATA});
     dispatch({type: GET_ARTISTS});
-    const {data} = await axios.get(`${config['SERVICE_URL']}/search?term=${artistName}&entity=allArtist`);
+    const {data} = await axios.get(`${'https://cors-anywhere.herokuapp.com/'}${config['SERVICE_URL']}/search?term=${artistName}&entity=allArtist`);
     if (data.results.length) {
       dispatch({type: SET_ARTISTS, data});
     } else {
@@ -32,7 +32,7 @@ export function getAlbums(artistName) {
   return async dispatch => {
     dispatch({type: CLEAN_HOME_DATA});
     dispatch({type: GET_ALBUMS});
-    const {data} = await axios.get(`${config['SERVICE_URL']}/search?term=${artistName}&entity=album`);
+    const {data} = await axios.get(`${'https://cors-anywhere.herokuapp.com/'}${config['SERVICE_URL']}/search?term=${artistName}&entity=album`);
     if (data.results.length) {
       dispatch({type: SET_ALBUMS, data});
     } else {
@@ -49,7 +49,7 @@ export function getArtistAlbumsByName(artistName) {
         .toLowerCase()
         .replace(/[^\w\s]/gi, '');
 
-      const {data} = await axios.get(`${config['SERVICE_URL']}/search?term=${parsedArtistName}&entity=album`);
+      const {data} = await axios.get(`${'https://cors-anywhere.herokuapp.com/'}${config['SERVICE_URL']}/search?term=${parsedArtistName}&entity=album`);
       if (data.results.length) {
         dispatch({type: SET_ARTIST_DATA, data});
       } else {
@@ -62,7 +62,7 @@ export function getArtistAlbumsByName(artistName) {
 export function getArtistAlbumsById(artistId) {
   return async dispatch => {
     dispatch({type: GET_ARTIST_BY_ID});
-    const {data} = await axios.get(`${config['SERVICE_URL']}/lookup?id=${artistId}&entity=album`);
+    const {data} = await axios.get(`${'https://cors-anywhere.herokuapp.com/'}${config['SERVICE_URL']}/lookup?id=${artistId}&entity=album`);
     if (data.results.length) {
       dispatch({type: SET_ARTIST_DATA, data});
     } else {
@@ -75,7 +75,7 @@ export function getArtistAlbumsById(artistId) {
 export function getAlbumById(albumId) {
   return async dispatch => {
     dispatch({type: GET_ALBUM_BY_ID});
-    const {data} = await axios.get(`${config['SERVICE_URL']}/lookup?id=${albumId}&entity=song`);
+    const {data} = await axios.get(`${'https://cors-anywhere.herokuapp.com/'}${config['SERVICE_URL']}/lookup?id=${albumId}&entity=song`);
     dispatch({type: SET_ALBUM_DATA, data});
     return data;
   }
