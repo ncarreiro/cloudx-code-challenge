@@ -40,7 +40,7 @@ class App extends Component {
       <Provider store={store}>
         <MuiThemeProvider theme={theme}>
           <CssBaseline/>
-          <Header/>
+          {/*<Header/>*/}
           <Grid
             container
             justify="center"

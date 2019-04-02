@@ -23,8 +23,8 @@ const styles = theme => ({
   root: {
     flexGrow: 1,
     textAlign: 'center',
-    paddingTop: theme.spacing.unit * 10,
-    paddingBottom: theme.spacing.unit * 10
+    paddingTop: theme.spacing.unit * 4,
+    paddingBottom: theme.spacing.unit * 4
   },
 });
 
@@ -61,11 +61,7 @@ class Home extends React.Component {
             Search for Artists or Albums
           </Typography>
         </Grid>
-        <Grid
-          container
-          justify="center"
-          alignItems="stretch"
-        >
+        <Grid item xs={12}>
           <HomeSearch/>
         </Grid>
 

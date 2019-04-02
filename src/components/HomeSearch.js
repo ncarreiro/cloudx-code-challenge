@@ -61,7 +61,15 @@ class HomeSearch extends React.Component {
         }}
       >
         <Grid container>
-          <Grid item xs={8}>
+          <Grid
+            item
+            md={2}
+          />
+          <Grid
+            item
+            xs={8}
+            md={6}
+          >
             <FormControl
               fullWidth>
               <TextField
@@ -72,7 +80,11 @@ class HomeSearch extends React.Component {
               />
             </FormControl>
           </Grid>
-          <Grid item xs={4}>
+          <Grid
+            item
+            xs={4}
+            md={2}
+          >
             <FormControl
               fullWidth>
               <Select
@@ -84,6 +96,10 @@ class HomeSearch extends React.Component {
               </Select>
             </FormControl>
           </Grid>
+          <Grid
+            item
+            md={2}
+          />
         </Grid>
       </form>
     )

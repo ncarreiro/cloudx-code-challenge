@@ -63,6 +63,7 @@ class CustomPagination extends React.Component {
 
   handleClick = page => evt => {
     evt.preventDefault();
+    window.scrollTo(0, 0);
     this.goToPage(page);
   };
 
@@ -158,6 +159,7 @@ class CustomPagination extends React.Component {
       <Grid
         container
         justify="center"
+        style={{margin: '20px 0'}}
       >
         {pages.map((page, index) => {
           if (page === LEFT_PAGE) return (

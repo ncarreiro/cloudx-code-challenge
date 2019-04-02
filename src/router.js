@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {connect} from 'react-redux';
 import {Router, Route, Switch} from 'react-router-dom';
 import {createBrowserHistory} from 'history';
@@ -10,13 +10,13 @@ import {
   NotFound
 } from './sections';
 
-class AppRouter extends Component {
+class AppRouter extends React.Component {
   render() {
     return (
       <Router history={createBrowserHistory()}>
         <Switch>
-          {/*<Route exact path="/artist/:artistName" component={Artist}/>*/}
           <Route exact path="/" component={Home}/>
+          {/*<Route exact path="/artist/:artistName" component={Artist}/>*/}
           <Route exact path="/artist/:artistId" component={Artist}/>
           <Route exact path="/album/:albumId" component={Album}/>
           <Route component={NotFound}/>

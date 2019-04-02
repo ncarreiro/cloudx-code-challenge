@@ -20,8 +20,8 @@ import {
 const styles = theme => ({
   root: {
     textAlign: 'center',
-    paddingTop: theme.spacing.unit * 10,
-    paddingBottom: theme.spacing.unit * 10
+    paddingTop: theme.spacing.unit * 4,
+    paddingBottom: theme.spacing.unit * 4
   },
   paper: {
     position: 'relative',
