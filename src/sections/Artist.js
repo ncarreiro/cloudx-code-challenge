@@ -65,7 +65,7 @@ function mapStateToProps(state) {
   const {
     artistName,
     artistAlbums
-  } = state.albumReducer;
+  } = state.artistReducer;
 
   return {
     artistName,
