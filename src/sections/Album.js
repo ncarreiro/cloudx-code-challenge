@@ -10,6 +10,7 @@ import Paper from '@material-ui/core/Paper';
 
 import {
   AlbumTracksList,
+  GoBack,
   Loader
 } from '../components';
 
@@ -20,8 +21,8 @@ import {
 const styles = theme => ({
   root: {
     textAlign: 'center',
-    paddingTop: theme.spacing.unit * 10,
-    paddingBottom: theme.spacing.unit * 10
+    paddingTop: theme.spacing.unit * 4,
+    paddingBottom: theme.spacing.unit * 4
   },
   paper: {
     position: 'relative',
@@ -57,6 +58,7 @@ class AlbumView extends React.Component {
         direction="column"
         alignItems="center"
         className={classes.root}>
+        <GoBack/>
         {showLoader ? <Loader/> : null}
         {albumArtwork && <Grid item xs>
           <Paper className={classes.paper}>

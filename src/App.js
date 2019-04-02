@@ -1,8 +1,14 @@
 import React, {Component} from 'react';
 import {Provider} from 'react-redux';
+import { createBrowserHistory } from "history";
+
 import store from './store';
 import Router from './router';
-import { Header } from './components';
+
+import {
+  Header,
+  Footer
+} from './components';
 
 import {MuiThemeProvider, createMuiTheme} from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
@@ -12,6 +18,9 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 
 import 'moment-timezone';
 import 'typeface-roboto';
+import 'material-icons';
+
+const history = createBrowserHistory();
 
 const theme = createMuiTheme({
   palette: {
@@ -40,19 +49,21 @@ class App extends Component {
       <Provider store={store}>
         <MuiThemeProvider theme={theme}>
           <CssBaseline/>
-          {/*<Header/>*/}
+          <Header/>
           <Grid
             container
             justify="center"
+            alignItems="center"
           >
-            <Grid item xs>
-            </Grid>
-            <Grid item xs={8}>
-              <Router/>
-            </Grid>
-            <Grid item xs>
+            <Grid
+              item
+              xs={12}
+              md={8}
+            >
+              <Router history={history}/>
             </Grid>
           </Grid>
+          {/*<Footer/>*/}
         </MuiThemeProvider>
       </Provider>
     );

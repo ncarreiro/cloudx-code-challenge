@@ -14,6 +14,10 @@ import InfoIcon from '@material-ui/icons/Info';
 import {Pagination} from '.';
 
 const styles = theme => ({
+  root: {
+    marginTop: theme.spacing.unit * 5,
+    marginBottom: theme.spacing.unit * 5,
+  },
   paper: {
     margin: theme.spacing.unit * 2,
     position: 'relative',
@@ -50,17 +54,11 @@ class ArtistsList extends React.Component {
     if (totalArtists === 0) return null;
 
     return (
-      <Grid item xs={12}>
-        <Typography variant="h5">
-          <strong className="text-secondary">{totalArtists}</strong> Artists
-        </Typography>
-
-        {currentPage && (
-          <Typography variant="body1">
-            Page <strong>{ currentPage }</strong> / <strong>{ totalPages }</strong>
-          </Typography>
-        )}
-
+      <Grid
+        item
+        xs={12}
+        className={classes.root}
+      >
         {currentArtists.map(artist => (
           <Grid
             key={artist.artistId}
@@ -87,7 +85,7 @@ class ArtistsList extends React.Component {
                 </Paper>
               </Link>
             </Grid>
-            <Grid item xs={0} md={3}/>
+            <Grid item md={3}/>
           </Grid>
         ))}
 
@@ -97,6 +95,17 @@ class ArtistsList extends React.Component {
           pageNeighbours={1}
           onPageChanged={this.onPageChanged}
         />
+
+        {currentPage && (
+          <Grid
+            container
+            justify="center"
+          >
+            <Typography variant="body1">
+              Page <strong>{ currentPage }</strong> / <strong>{ totalPages }</strong>
+            </Typography>
+          </Grid>
+        )}
       </Grid>
     )
   }

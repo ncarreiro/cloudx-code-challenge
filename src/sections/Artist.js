@@ -9,6 +9,7 @@ import Typography from '@material-ui/core/Typography';
 
 import {
   AlbumsList,
+  GoBack,
   Loader
 } from '../components';
 
@@ -77,6 +78,7 @@ class ArtistView extends React.Component {
         direction="column"
         alignItems="center"
         className={classes.root}>
+        <GoBack/>
         {showLoader ? <Loader/> : null}
         {artistName && <Grid item>
           <Typography variant="h4" gutterBottom>

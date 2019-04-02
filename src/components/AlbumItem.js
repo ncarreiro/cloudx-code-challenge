@@ -12,9 +12,11 @@ import InfoIcon from '@material-ui/icons/Info';
 const styles = () => ({
   paper: {
     position: 'relative',
+    width: '100%'
   },
   img: {
     width: '100%',
+    height: 'auto'
   },
 });
 
@@ -27,27 +29,37 @@ class AlbumItem extends React.Component {
       collectionName,
       artworkUrl100
     } = this.props;
-    return <Grid key={collectionId} item xs={12} md={4}>
-      <Link
-        to={`/album/${collectionId}`}
+    return (
+      <Grid
+        key={collectionId}
+        item
+        xs={12}
+        md={4}
+        lg={3}
       >
-        <Paper className={classes.paper}>
-          <img
-            className={classes.img}
-            src={artworkUrl100}
-            alt={collectionName}/>
-          <GridListTileBar
-            title={collectionName}
-            subtitle={<span>by: {artistName}</span>}
-            actionIcon={
-              <IconButton className={classes.icon}>
-                <InfoIcon />
-              </IconButton>
-            }
-          />
-        </Paper>
-      </Link>
-    </Grid>;
+        <Link
+          to={`/album/${collectionId}`}
+        >
+          <Paper
+            className={classes.paper}
+          >
+            <img
+              className={classes.img}
+              src={artworkUrl100}
+              alt={collectionName}/>
+            <GridListTileBar
+              title={collectionName}
+              subtitle={<span>by: {artistName}</span>}
+              actionIcon={
+                <IconButton className={classes.icon}>
+                  <InfoIcon />
+                </IconButton>
+              }
+            />
+          </Paper>
+        </Link>
+      </Grid>
+    );
   }
 }
 

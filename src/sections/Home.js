@@ -5,13 +5,11 @@ import PropTypes from 'prop-types';
 
 import {withStyles} from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
 
 import {
   ArtistsList,
   AlbumsList,
   HomeSearch,
-  Loader,
   Snackbar
 } from '../components';
 
@@ -24,7 +22,8 @@ const styles = theme => ({
     flexGrow: 1,
     textAlign: 'center',
     paddingTop: theme.spacing.unit * 4,
-    paddingBottom: theme.spacing.unit * 4
+    paddingBottom: theme.spacing.unit * 4,
+    height: 'calc(100vh - 200px)'
   },
 });
 
@@ -39,34 +38,23 @@ class Home extends React.Component {
       artists,
       albums,
       showError,
-      showLoader
     } = this.props;
 
     return (
       <Grid
         container
-        direction="column"
-        justify="flex-start"
-        alignItems="stretch"
-        className={classes.root}>
+        direction="row"
+        justify="center"
+        alignItems="center"
+        className={classes.root}
+      >
         <Snackbar
           open={showError}
           message={'Error: No results found!'}
         />
         <Grid item xs={12}>
-          <Typography
-            variant="h4"
-            color="primary"
-            gutterBottom>
-            Search for Artists or Albums
-          </Typography>
-        </Grid>
-        <Grid item xs={12}>
           <HomeSearch/>
         </Grid>
-
-        {showLoader ? <Loader/> : null}
-
         {artists.length > 0 ? <ArtistsList artists={artists}/> : null}
         {albums.length > 0 ? <AlbumsList albums={albums}/> : null}
       </Grid>
@@ -79,7 +67,6 @@ Home.propTypes = {
 };
 
 function mapStateToProps(state) {
-  const {showLoader} = state.loaderReducer;
   const {showError} = state.dialogReducer;
 
   const {
@@ -90,8 +77,7 @@ function mapStateToProps(state) {
   return {
     artists,
     albums,
-    showError,
-    showLoader
+    showError
   }
 }
 

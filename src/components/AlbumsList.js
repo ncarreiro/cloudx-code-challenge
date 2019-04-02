@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from "react-redux";
 
+import {withStyles} from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 
@@ -8,6 +9,13 @@ import {
   AlbumItem,
   Pagination
 } from '.';
+
+const styles = theme => ({
+  root: {
+    marginTop: theme.spacing.unit * 5,
+    marginBottom: theme.spacing.unit * 5,
+  }
+});
 
 class AlbumList extends React.Component {
   state = {allAlbums: [], currentAlbums: [], currentPage: null, totalPages: null};
@@ -27,24 +35,30 @@ class AlbumList extends React.Component {
   };
 
   render() {
-    const {allAlbums, currentAlbums, currentPage, totalPages} = this.state;
+    const {classes} = this.props;
+
+    const {
+      allAlbums,
+      currentAlbums,
+      currentPage,
+      totalPages
+    } = this.state;
 
     const totalAlbums = allAlbums.length;
     if (totalAlbums === 0) return null;
 
     return (
-      <div>
-        <Grid container spacing={16}>
-          <Grid item xs={12}>
-            <Grid container justify="center" spacing={16}>
-              {currentAlbums.map(album => <AlbumItem {...album}/>)}
-            </Grid>
-          </Grid>
+      <div className={classes.root}>
+        <Grid
+          container
+          spacing={16}
+        >
+          {currentAlbums.map(album => <AlbumItem key={album.collectionId} {...album}/>)}
         </Grid>
 
         <Pagination
           totalRecords={totalAlbums}
-          pageLimit={9}
+          pageLimit={16}
           pageNeighbours={1}
           onPageChanged={this.onPageChanged}
         />
@@ -69,4 +83,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, {})(AlbumList);
+export default withStyles(styles)(connect(mapStateToProps, {})(AlbumList));

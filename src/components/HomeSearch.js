@@ -1,13 +1,18 @@
 import React from 'react';
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
+
+import {Loader} from '.';
+
 import {
   setHomeSearchValue,
   setHomeSearchFilter
 } from "../actions/homeActions";
+
 import {getAlbums, getArtists} from "../actions/itunesActions";
 
 import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
@@ -27,31 +32,37 @@ class HomeSearch extends React.Component {
   handleSearch = () => {
     const {searchValue, searchFilter} = this.props;
 
-    this.setState({
-      showLoading: true
-    });
+    if (searchValue) {
+      this.setState({
+        showLoading: true
+      });
 
-    switch (searchFilter) {
-      case 'artists': {
-        return this.props.getArtists(searchValue)
-          .then(() => this.setState({
-            showLoading: false
-          }))
-      }
-      case 'albums': {
-        return this.props.getAlbums(searchValue)
-          .then(() => this.setState({
-            showLoading: false
-          }))
-      }
-      default: {
-        return false
+      switch (searchFilter) {
+        case 'artists': {
+          return this.props.getArtists(searchValue)
+            .then(() => this.setState({
+              showLoading: false
+            }))
+        }
+        case 'albums': {
+          return this.props.getAlbums(searchValue)
+            .then(() => this.setState({
+              showLoading: false
+            }))
+        }
+        default: {
+          return false
+        }
       }
     }
   };
 
   render() {
-    const {searchValue, searchFilter} = this.props;
+    const {
+      searchValue,
+      searchFilter,
+      showLoader
+    } = this.props;
 
     return (
       <form
@@ -61,6 +72,14 @@ class HomeSearch extends React.Component {
         }}
       >
         <Grid container>
+          <Grid item xs={12}>
+            <Typography
+              variant="h4"
+              color="primary"
+              gutterBottom>
+              Search for Artists or Albums
+            </Typography>
+          </Grid>
           <Grid
             item
             md={2}
@@ -100,6 +119,7 @@ class HomeSearch extends React.Component {
             item
             md={2}
           />
+          {showLoader ? <Loader/> : null}
         </Grid>
       </form>
     )
@@ -107,6 +127,8 @@ class HomeSearch extends React.Component {
 }
 
 function mapStateToProps(state) {
+  const {showLoader} = state.loaderReducer;
+
   const {
     artists,
     albums,
@@ -118,7 +140,8 @@ function mapStateToProps(state) {
     artists,
     albums,
     searchValue,
-    searchFilter
+    searchFilter,
+    showLoader
   }
 }
 

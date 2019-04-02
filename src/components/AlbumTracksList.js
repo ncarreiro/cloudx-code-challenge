@@ -15,9 +15,9 @@ const TrackItem = props => (
     <TableCell component="th" scope="props">
       {props.trackName}
     </TableCell>
-    <TableCell align="right"><Moment format="mm:ss">{props.trackTimeMillis}</Moment></TableCell>
     <TableCell align="right">{props.primaryGenreName}</TableCell>
-    <TableCell align="right">{props.collectionPrice}</TableCell>
+    <TableCell align="right"><Moment format="mm:ss">{props.trackTimeMillis}</Moment></TableCell>
+    <TableCell align="right">$ {props.collectionPrice}</TableCell>
   </TableRow>
 );
 
@@ -33,8 +33,8 @@ class AlbumTracksList extends React.Component {
           <TableRow>
             <TableCell/>
             <TableCell>Name</TableCell>
-            <TableCell align="right">Duration</TableCell>
             <TableCell align="right">Genre</TableCell>
+            <TableCell align="right">Duration</TableCell>
             <TableCell align="right">Price</TableCell>
           </TableRow>
         </TableHead>
