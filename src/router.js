@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {Router, Route, Switch} from 'react-router-dom';
+import {HashRouter, Route, Switch} from 'react-router-dom';
 import {createBrowserHistory} from 'history';
 
 import {
@@ -13,7 +13,7 @@ import {
 class AppRouter extends React.Component {
   render() {
     return (
-      <Router history={createBrowserHistory()}>
+      <HashRouter history={createBrowserHistory()}>
         <Switch>
           <Route exact path="/" component={Home}/>
           {/*<Route exact path="/artist/:artistName" component={Artist}/>*/}
@@ -21,7 +21,7 @@ class AppRouter extends React.Component {
           <Route exact path="/album/:albumId" component={Album}/>
           <Route component={NotFound}/>
         </Switch>
-      </Router>
+      </HashRouter>
     );
   }
 }
