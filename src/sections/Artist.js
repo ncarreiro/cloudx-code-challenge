@@ -1,51 +1,63 @@
 import React from 'react';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import Typography from '@material-ui/core/Typography';
-import { withStyles } from '@material-ui/core/styles';
 
-import {
-  getAlbums
-} from '../actions/itunesActions';
+import {withStyles} from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+
+import {AlbumsList} from '../components';
+
+import {getArtistAlbumsById} from '../actions/itunesActions';
 
 const styles = theme => ({
   root: {
     textAlign: 'center',
-    paddingTop: theme.spacing.unit * 20,
+    paddingTop: theme.spacing.unit * 5,
+    paddingBottom: theme.spacing.unit * 5
   },
+  paper: {
+    position: 'relative',
+    marginTop: theme.spacing.unit * 2,
+    marginBottom: theme.spacing.unit * 2,
+    height: 300,
+    width: 300,
+  },
+  img: {
+    width: '100%',
+    height: 300
+  }
 });
 
-const AlbumItem = props => <li>
-  <a href={props.collectionViewUrl}>{props.collectionName}</a>
-</li>;
-
-class Artist extends React.Component {
-  componentWillMount() {
-    this.props.getAlbums('jackson')
+class ArtistView extends React.Component {
+  componentDidMount() {
+    this.props.getArtistAlbumsById(this.props.match.params.artistId)
   }
 
   render() {
     const {
       classes,
       artistName,
-      artistAlbums
+      artistAlbums,
     } = this.props;
 
     return (
-      <div className={classes.root}>
+      <Grid
+        container
+        direction="column"
+        alignItems="center"
+        className={classes.root}>
         <Typography variant="h2" gutterBottom>
           {artistName}
         </Typography>
-        <ul>
-          {artistAlbums.length ? artistAlbums.map(album => <AlbumItem key={album.collectionId} {...album}/>) : null}
-        </ul>
-      </div>
+        {/*{artistAlbums.length > 0 ? <AlbumsList albums={artistAlbums}/> : null}*/}
+      </Grid>
     );
   }
 }
 
-Artist.propTypes = {
+ArtistView.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
@@ -53,7 +65,7 @@ function mapStateToProps(state) {
   const {
     artistName,
     artistAlbums
-  } = state.artistReducer;
+  } = state.albumReducer;
 
   return {
     artistName,
@@ -63,8 +75,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    getAlbums: bindActionCreators(getAlbums, dispatch)
+    getArtistAlbumsById: bindActionCreators(getArtistAlbumsById, dispatch)
   }
 }
 
-export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(Artist));
+export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(ArtistView));

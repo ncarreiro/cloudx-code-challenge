@@ -37,7 +37,7 @@ const TrackItem = props => (
   </Grid>
 );
 
-class Album extends React.Component {
+class AlbumView extends React.Component {
   componentDidMount() {
     this.props.getAlbumById(this.props.match.params.albumId)
   }
@@ -73,7 +73,7 @@ class Album extends React.Component {
   }
 }
 
-Album.propTypes = {
+AlbumView.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
@@ -97,4 +97,4 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(Album));
+export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(AlbumView));
