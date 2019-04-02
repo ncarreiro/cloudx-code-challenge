@@ -92,7 +92,6 @@ class HomeSearch extends React.Component {
           >
             <FormControl
               fullWidth
-              style={{marginTop: '1px'}}
             >
               <TextField
                 fullWidth
@@ -110,8 +109,10 @@ class HomeSearch extends React.Component {
             <FormControl
               fullWidth>
               <Select
+                autoWidth
                 value={searchFilter}
                 onChange={this.handleFilter}
+                style={{textAlign: 'left'}}
               >
                 <MenuItem value="artists">Artists</MenuItem>
                 <MenuItem value="albums">Albums</MenuItem>

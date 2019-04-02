@@ -3,7 +3,6 @@ import {connect} from "react-redux";
 
 import {withStyles} from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
 
 import {
   AlbumItem,
@@ -12,9 +11,9 @@ import {
 
 const styles = theme => ({
   root: {
+    overflow: 'hidden',
     marginTop: theme.spacing.unit * 5,
-    marginBottom: theme.spacing.unit * 5,
-    overflow: 'hidden'
+    marginBottom: theme.spacing.unit * 5
   }
 });
 
@@ -22,7 +21,7 @@ class AlbumList extends React.Component {
   state = {allAlbums: [], currentAlbums: [], currentPage: null, totalPages: null};
 
   componentDidMount() {
-    this.setState({ allAlbums: this.props.albums });
+    this.setState({allAlbums: this.props.albums});
   };
 
   onPageChanged = data => {
@@ -37,13 +36,7 @@ class AlbumList extends React.Component {
 
   render() {
     const {classes} = this.props;
-
-    const {
-      allAlbums,
-      currentAlbums,
-      currentPage,
-      totalPages
-    } = this.state;
+    const {allAlbums, currentAlbums} = this.state;
 
     const totalAlbums = allAlbums.length;
     if (totalAlbums === 0) return null;
@@ -53,7 +46,8 @@ class AlbumList extends React.Component {
         container
         alignContent="stretch"
         alignItems="stretch"
-        className={classes.root}>
+        className={classes.root}
+      >
         <Grid
           container
           spacing={16}
@@ -67,12 +61,6 @@ class AlbumList extends React.Component {
           pageNeighbours={1}
           onPageChanged={this.onPageChanged}
         />
-
-        {currentPage && (
-          <Typography variant="body1">
-            Page <strong>{ currentPage }</strong> / <strong>{ totalPages }</strong>
-          </Typography>
-        )}
       </Grid>
     );
   }

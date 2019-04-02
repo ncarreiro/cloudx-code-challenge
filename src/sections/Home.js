@@ -21,9 +21,9 @@ const styles = theme => ({
   root: {
     flexGrow: 1,
     textAlign: 'center',
-    paddingTop: theme.spacing.unit * 4,
+    marginBottom: '20px',
+    paddingTop: theme.spacing.unit * 6,
     paddingBottom: theme.spacing.unit * 4,
-    height: 'calc(100vh - 200px)'
   },
 });
 

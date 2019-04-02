@@ -34,7 +34,7 @@ class ArtistsList extends React.Component {
   state = {allArtists: [], currentArtists: [], currentPage: null, totalPages: null};
 
   componentDidMount() {
-    this.setState({ allArtists: this.props.artists });
+    this.setState({allArtists: this.props.artists});
   };
 
   onPageChanged = data => {
@@ -48,8 +48,8 @@ class ArtistsList extends React.Component {
   };
 
   render() {
-    const {allArtists, currentArtists, currentPage, totalPages} = this.state;
     const {classes} = this.props;
+    const {allArtists, currentArtists} = this.state;
 
     const totalArtists = allArtists.length;
     if (totalArtists === 0) return null;
@@ -96,17 +96,6 @@ class ArtistsList extends React.Component {
           pageNeighbours={1}
           onPageChanged={this.onPageChanged}
         />
-
-        {currentPage && (
-          <Grid
-            container
-            justify="center"
-          >
-            <Typography variant="body1">
-              Page <strong>{ currentPage }</strong> / <strong>{ totalPages }</strong>
-            </Typography>
-          </Grid>
-        )}
       </Grid>
     )
   }

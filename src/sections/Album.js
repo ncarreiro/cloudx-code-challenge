@@ -22,7 +22,7 @@ const styles = theme => ({
   root: {
     textAlign: 'center',
     paddingTop: theme.spacing.unit * 4,
-    paddingBottom: theme.spacing.unit * 4
+    paddingBottom: theme.spacing.unit * 12
   },
   paper: {
     position: 'relative',

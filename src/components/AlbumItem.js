@@ -15,8 +15,7 @@ const styles = () => ({
     width: '100%'
   },
   img: {
-    width: '100%',
-    height: 'auto'
+    width: '100%'
   },
 });
 

@@ -63,7 +63,7 @@ class App extends Component {
               <Router history={history}/>
             </Grid>
           </Grid>
-          {/*<Footer/>*/}
+          <Footer/>
         </MuiThemeProvider>
       </Provider>
     );
