@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/cloudx-code-challenge/precache-manifest.90c2bddcd254795695ea54c854ecf7c3.js"
+  "/cloudx-code-challenge/precache-manifest.61082464f1bc239781c09a29b8b3ef52.js"
 );
 
 workbox.clientsClaim();
